@@ -1,0 +1,131 @@
+---
+title: 'Webhooks'
+description: 'Webhooks are used to receive real-time notifications about payment events or e-commerce notifications'
+---
+
+## General guidance
+
+Paysum provides a webhooks system allowing you to subscribe to events with Webhook Endpoints such as Product/Payment Order status webhooks and Dynamic Product webhooks.
+
+<Note>Both HTTP and HTTPS webhook URLs are supported.</Note>
+
+A [webhook simulator](https://paysum.io/dashboard/webhooks) is available allowing you to simulate webhook events to a specified URL. You can fully customise the data payload sent to test edge cases.
+
+<Card
+  title="Create Webhook"
+  icon="plus"
+  href="https://paysum.io/dashboard/webhooks/new"
+>
+  Configure your first webhook to receive instant & live notifications.
+</Card>
+
+## Signing/Validating
+
+To verify the authenticity of a webhook request and its payload, each webhook request includes a `X-Webhook-Signature` header with a HMAC signature comprised of the JSON encoded request body and your webhook secret. Your webhook secret can be viewed by clicking the URL on [webhooks page](https://paysum.io/dashboard/webhooks).
+
+<Warning>Webhook secret are unique for each webhook URL.</Warning>
+
+### Signature verification code samples
+
+<AccordionGroup>
+  <Accordion title="PHP" icon="php">
+    ```php
+    <?php
+      $payload = file_get_contents('php://input');
+      $secret = 'WEBHOOK_SECRET'; // replace with your webhook secret, you can find it by clicking the URL on webhooks page
+      $header_signature = $_SERVER['HTTP_X_WEBHOOK_SIGNATURE']; // get our signature header
+      $signature = hash_hmac('sha512', $payload, $secret);
+
+      if (hash_equals($signature, $header_signature)) {
+        // handle valid webhook
+      } else {
+        // invalid webhook
+      }
+    ?>
+    ```
+  </Accordion>
+
+  <Accordion title="Node JS" icon="js">
+    ```js
+    const express = require('express');
+    const crypto = require('crypto'); // make sure to run this command on your system - npm install express
+    const app = express();
+
+    const HOOK_SECRET = Buffer.from('WEBHOOK_SECRET'); // replace with your webhook secret, you can find it by clicking the URL on webhooks page
+
+    app.use(express.raw({ type: '*/*' }));
+
+    function verifySignature(body, signature) {
+        const hmac = crypto.createHmac('sha512', HOOK_SECRET);
+        hmac.update(body);
+        const computed = hmac.digest('hex');
+
+        const sigBuffer = Buffer.from(signature, 'hex');
+        const computedBuffer = Buffer.from(computed, 'hex');
+        if (sigBuffer.length !== computedBuffer.length) return false;
+        return crypto.timingSafeEqual(sigBuffer, computedBuffer);
+    }
+
+    app.post('/protected', (req, res) => {
+        const clientSignature = req.headers['x-webhook-signature'] || '';
+        if (!verifySignature(req.body, clientSignature)) {
+            return res.sendStatus(401);
+        }
+        res.json({ status: 'success' });
+    });
+
+    app.listen(5000, () => {
+        console.log('Server running on port 5000');
+    });
+    ```
+  </Accordion>
+
+  <Accordion title="Python" icon="python">
+    ```python
+    from flask import Flask, request, abort, jsonify # make sure to run this command on your system - pip install flask
+    import hmac
+    import hashlib
+    import os
+
+    app = Flask(__name__)
+    HOOK_SECRET = b"WEBHOOK_SECRET" # replace with your webhook secret, you can find it by clicking the URL on webhooks page
+
+    def verify_signature(body, signature):
+        computed = hmac.new(HOOK_SECRET, body, digestmod=hashlib.sha512).hexdigest()
+        # Use hmac.compare_digest for secure time comparison
+        return hmac.compare_digest(signature, computed)
+
+    @app.route('/protected', methods=['POST'])
+    def protected():
+        client_signature = request.headers.get('X-Webhook-Signature', '')
+        body = request.get_data()
+        if not verify_signature(body, client_signature):
+            abort(401)
+        return jsonify({"status": "success"})
+
+    if __name__ == '__main__':
+        app.run(debug=True)
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Types
+
+Each request will feature a `X-Event-Type` header containing the webhook request type. A list of supported types for webhooks can be found below.
+
+| Event | Description |
+| ----- | ----------- |
+| `order.created` | The order has been created. |
+| `order.paid` | The order status has changed. |
+
+## Logs
+
+Each webhook request will create a [Webhook Log](https://paysum.io/dashboard/webhooks). The object is created by the request that has been sent.
+
+<Warning>Logs will only be kept for up to 30 days. After this period they will be deleted</Warning>
+
+## Whitelist Us
+
+Every request will be sent from `212.80.222.225`
+
+<Warning>The simulator sends requests from a random datacentre IP, production requests are sent from the static IP above.</Warning>

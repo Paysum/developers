@@ -1,0 +1,20 @@
+---
+title: 'Authentication'
+description: '(Required) Use Paysum API key to authenticate your requests'
+---
+
+## Authorization header
+
+Paysum's API uses the Authorization header for your API Key. must send your API key via the Authorization header, or requests will be rejected.
+
+```
+Authorization: YOUR_API_KEY
+```
+
+Your API key can be accessed and re-generated [in the security tab](https://paysum.io/dashboard/api-keys).
+
+## Why did my API key change?
+
+Paysum partners with GitHub to scan for leaked API keys. If you accidentally leak your Paysum API Key on GitHub, we will automatically reset your API key.
+
+Simply use the new API key and don't publish to GitHub this time, use a `.gitignore` file and `.env` file.
