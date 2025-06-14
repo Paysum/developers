@@ -8,7 +8,7 @@
     "light": "#6366f1",
     "dark": "#332f88"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "https://paysum.io/favicon.ico",
   "navigation": {
     "tabs": [
       {
@@ -52,8 +52,8 @@
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "https://paysum.io/opengraph.png",
+    "dark": "https://merchant-assets-storefront.paysum.dev/paysum-white-logo.png"
   },
   "navbar": {
     "links": [
