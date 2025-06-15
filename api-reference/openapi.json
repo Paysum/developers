@@ -1,16 +1,17 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
+    "title": "OpenAPI Paysum",
+    "description": "Paysum API documented in the OpenAPI specification",
     "license": {
-      "name": "MIT"
+      "name": "CC-BY-NC-4.0",
+      "url": "https://creativecommons.org/licenses/by-nc/4.0/"
     },
     "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
+      "url": "http://paysum.dev/api/v1"
     }
   ],
   "security": [
