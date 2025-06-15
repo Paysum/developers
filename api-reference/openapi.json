@@ -61,13 +61,95 @@
         }
       },
       "post": {
-        "description": "Creates a new plant in the store",
+        "description": "Create a payment",
         "requestBody": {
-          "description": "Plant to add to the store",
+          "description": "payment JSON to be created",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+                "type": "object",
+                "required": [
+                  "email",
+                  "shopId"
+                ],
+                "properties": {
+                  "shopId": {
+                    "type": "string",
+                    "example": "01JWJBQ4HZ8G6VJB590G4A3DCQ",
+                    "description": "Shop ID displayed on the API keys page. This will identify the specific shop you want the payment created on."
+                  },
+                  "gateway": {
+                    "$ref": "#/components/schemas/gateway"
+                  },
+                  "cost": {
+                    "type": "integer",
+                    "example": 99,
+                    "description": "Required if products not defined. This cost will show to the customer. You must provide this in cents format. Example — 0,99 is 99. 4,99 is 499"
+                  },
+                  "currency": {
+                    "type": "string",
+                    "enum": [
+                      "CAD",
+                      "HKD",
+                      "ISK",
+                      "PHP",
+                      "DKK",
+                      "HUF",
+                      "CZK",
+                      "GBP",
+                      "RON",
+                      "SEK",
+                      "IDR",
+                      "INR",
+                      "BRL",
+                      "RUB",
+                      "HRK",
+                      "JPY",
+                      "THB",
+                      "CHF",
+                      "EUR",
+                      "MYR",
+                      "BGN",
+                      "TRY",
+                      "CNY",
+                      "NOK",
+                      "NZD",
+                      "ZAR",
+                      "USD",
+                      "MXN",
+                      "SGD",
+                      "AUD",
+                      "ILS",
+                      "KRW",
+                      "PLN"
+                    ],
+                    "example": "EUR",
+                    "description": "Can be used to define currency for the payment"
+                  },
+                  "quantity": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "example": 5,
+                    "description": "Can be passed with products defined or not. The cost or product's price will be multiplied by this amount"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "customer@gmail.com",
+                    "description": "Email of the customer. Should you want to handle emails on your own, pass to this field a company email for which receipts of orders will be sent for accounting and log purposes"
+                  },
+                  "custom_fields": {
+                    "$ref": "#/components/schemas/custom_fields_object"
+                  },
+                  "products": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "01JXB9BZ1B4S9QQ5SCVZC4D9B7"
+                    ]
+                  }
+                }
               }
             }
           },
@@ -131,28 +213,6 @@
       }
     }
   },
-  "webhooks": {
-    "/plant/webhook": {
-      "post": {
-        "description": "Information about a new plant added to the store",
-        "requestBody": {
-          "description": "Plant added to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Return a 200 status to indicate that the data was received successfully"
-          }
-        }
-      }
-    }
-  },
   "components": {
     "schemas": {
       "Plant": {
@@ -171,25 +231,20 @@
           }
         }
       },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          }
-        ]
+      "custom_fields_object": {
+        "type": "object",
+        "example": {
+          "username": "software-username"
+        },
+        "description": "The custom fields passed by the user at checkout. The format are key-value pairs."
+      },
+      "gateway": {
+        "type": "string",
+        "enum": [
+          "STRIPE",
+          "CRYPTO"
+        ],
+        "example": "STRIPE"
       },
       "Error": {
         "required": [
