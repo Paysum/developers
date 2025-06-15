@@ -70,8 +70,7 @@
                 "type": "object",
                 "required": [
                   "email",
-                  "shopId",
-                  "gateway"
+                  "shopId"
                 ],
                 "properties": {
                   "shopId": {
