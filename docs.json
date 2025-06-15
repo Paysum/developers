@@ -23,7 +23,7 @@
             ]
           },
           {
-            "group": "Endpoints",
+            "group": "Payments",
             "pages": [
               "api-reference/payments/get"
             ]
