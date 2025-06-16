@@ -11,7 +11,7 @@
   },
   "servers": [
     {
-      "url": "http://paysum.dev/api/v1"
+      "url": "https://paysum.dev/api/v1"
     }
   ],
   "security": [
@@ -129,7 +129,7 @@
                   "quantity": {
                     "type": "integer",
                     "minimum": 1,
-                    "example": 5,
+                    "example": 1,
                     "description": "Can be passed with products defined or not. The cost or product's price will be multiplied by this amount"
                   },
                   "email": {
