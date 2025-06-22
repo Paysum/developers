@@ -3,26 +3,36 @@ title: 'Introduction'
 description: 'Learn how to use Paysum to create on-demand payments'
 ---
 
-## Welcome
+## General guidance
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+If you're not sure where to start, below is a list of everything related to Documentation.
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+<CardGroup cols={3}>
+  <Card
+    title="Authentication"
+    icon="key-skeleton"
+    href="/api-reference/authentication"
+  >
+    Use your API Key to authenticate your requests
+  </Card>
+  <Card
+    title="Payments"
+    icon="credit-card"
+    href="/api-reference/payments"
+  >
+    Create a payment in FIAT or Crypto for anything
+  </Card>
+  <Card
+    title="Webhooks"
+    icon="webhook"
+    href="/api-reference/webhooks"
+  >
+    Use webhooks to receive real-time notifications
+  </Card>
+</CardGroup>
 
-## Authentication
+## Reference and Support
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+On the left part of your screen, you can find the full API Reference for every Paysum endpoint, including mock requests and responses that allow you to swiftly code your application.
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
-```
+If you need help with your integration, feel free to contact us through our [Discord community](https://discord.gg/paysum).
