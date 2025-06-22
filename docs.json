@@ -8,7 +8,7 @@
     "light": "#6366f1",
     "dark": "#332f88"
   },
-  "favicon": "https://paysum.io/favicon.ico",
+  "favicon": "favicon.ico",
   "navigation": {
     "tabs": [
       {
