@@ -1,0 +1,58 @@
+---
+title: "How delivery works"
+description: "Choose how buyers receive a purchase and verify delivery after payment."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Choose the delivery type">
+    Open the product editor and choose the delivery method that matches your product: keys, a download, buyer instructions, or a configured integration.
+  </Step>
+  <Step title="Provide the content">
+    Add the actual keys, public file link, or message. A title and price alone do not supply anything to deliver.
+  </Step>
+  <Step title="Test payment and delivery separately">
+    Use the onboarding demo to explore checkout. To verify real fulfillment, use a live order and inspect what the buyer receives.
+  </Step>
+  <Step title="Review the order">
+    Check the completed order, the delivery information, and the receipt sent to the buyer’s email address.
+  </Step>
+</Steps>
+
+## Payment must be confirmed
+
+Reaching a return page or receiving a browser event does not prove that a payment has settled. Delivery should follow the platform’s confirmed order state.
+
+## Custom line items
+
+A Checkout API session with custom line_items does not turn an arbitrary description into a configured product delivery. Use product_ids for products already in the store, or fulfill custom goods in your own backend after verifying the completed session.
+
+## Support and missing delivery
+
+Ask the buyer for the order reference and purchase email. Check payment status, available stock, the saved delivery configuration, and the delivery link before resending anything.
+
+## If something does not work
+
+<Note title="What to check">
+  An unpaid or confirming order is not a delivery failure. For a paid order, inspect stock, the product’s delivery settings, and whether the download can be accessed without signing into your personal account.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Serials and license keys" href="https://docs.paysum.io/serials-and-keys" icon="Package">
+    Load and manage the finite items delivered to buyers after payment.
+  </Card>
+  <Card title="Files and download links" href="https://docs.paysum.io/file-downloads" icon="Package">
+    Deliver files through a product’s configured download or buyer instructions.
+  </Card>
+  <Card title="Orders and invoices" href="https://docs.paysum.io/orders" icon="FileText">
+    Find a transaction, inspect its status, and troubleshoot payment or delivery.
+  </Card>
+  <Card title="Webhooks" href="https://docs.paysum.io/webhooks" icon="Webhook">
+    Receive signed events when checkout sessions and withdrawals change state.
+  </Card>
+</CardGroup>

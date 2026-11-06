@@ -1,0 +1,55 @@
+---
+title: "Crypto payments and wallets"
+description: "Understand wallet balances, blockchain confirmation, and crypto withdrawals."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Configure supported coins">
+    Open the payment method settings and enable the supported BTC, LTC, or ETH methods you intend to accept.
+  </Step>
+  <Step title="Inspect the wallet">
+    Open Payments → Wallet and choose the matching currency. Keep the coin and destination network aligned.
+  </Step>
+  <Step title="Check an order payment">
+    Use the amount and address shown by the actual payment page. Wait for the required confirmation instead of assuming a submitted transaction is complete.
+  </Step>
+  <Step title="Review withdrawals">
+    Open the withdrawal settings and wallet history before sending funds. Verify the destination and network carefully.
+  </Step>
+</Steps>
+
+## Network and amount matter
+
+A payment to the wrong address or network is not a normal pending order. Review the transaction on the correct chain and compare the address and amount with the order’s payment instructions.
+
+## Fees and available balance
+
+Blockchain fees and the available wallet balance affect what can be withdrawn. The API exposes the wallet and withdrawal operations separately; read their response and error fields before automating payouts.
+
+## Avoid blind retries
+
+A failed browser request does not prove a withdrawal did not happen. Check the withdrawal history before attempting another payout.
+
+## If something does not work
+
+<Note title="What to check">
+  If a payment is confirming, inspect its confirmations and the order status. If a withdrawal request times out, query the existing withdrawal records before retrying.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="List wallets" href="https://docs.paysum.io/api/withdrawals/list-wallets" icon="BookOpen">
+    
+  </Card>
+  <Card title="Create withdrawal" href="https://docs.paysum.io/api/withdrawals/create-withdrawal" icon="BookOpen">
+    
+  </Card>
+  <Card title="Orders and invoices" href="https://docs.paysum.io/orders" icon="FileText">
+    Find a transaction, inspect its status, and troubleshoot payment or delivery.
+  </Card>
+</CardGroup>

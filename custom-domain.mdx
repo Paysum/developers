@@ -1,0 +1,55 @@
+---
+title: "Connect a custom domain"
+description: "Connect a domain you own and verify that it serves the correct store."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Add the domain">
+    Open Storefront → Domain and choose the store. Enter the hostname you want customers to use, without a URL path.
+  </Step>
+  <Step title="Copy the displayed DNS record">
+    Follow the record type, name, and destination shown by the setup screen. Use those current values rather than an IP copied from an old tutorial.
+  </Step>
+  <Step title="Update your DNS provider">
+    Add or correct the requested record. Remove a conflicting record for the same name only after checking what it currently serves.
+  </Step>
+  <Step title="Verify and check HTTPS">
+    Return to the domain screen and run verification. Wait for DNS and certificate provisioning, then open the domain over HTTPS.
+  </Step>
+</Steps>
+
+## Root domains and subdomains
+
+The record name differs between a root domain and a subdomain such as shop.example.com. DNS providers often use @ for the root and shop for a subdomain. Follow the setup screen and your DNS provider’s terminology.
+
+## Keep the original store address
+
+Your platform store address remains useful for troubleshooting. If it works while your custom domain does not, focus on DNS records, verification status, and HTTPS configuration rather than rebuilding the store.
+
+## Cloudflare and other proxies
+
+A DNS proxy can change what verification sees. If the setup screen reports a proxy or an unexpected destination, follow its instructions and verify the record again after the change has propagated.
+
+## If something does not work
+
+<Note title="What to check">
+  Check the exact hostname, conflicting A/AAAA/CNAME records, the expected destination shown in the dashboard, and the store selected for this domain. Do not keep deleting and re-adding the domain while DNS is still propagating.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Stores" href="https://docs.paysum.io/stores" icon="Store">
+    Storefronts, subdomains, custom domains and team access.
+  </Card>
+  <Card title="Themes and customization" href="https://docs.paysum.io/themes" icon="Store">
+    Choose a theme, adjust your storefront, and understand when to use each editor.
+  </Card>
+  <Card title="Search and link previews" href="https://docs.paysum.io/seo" icon="FileText">
+    Set clear store and product metadata for search results and shared links.
+  </Card>
+</CardGroup>

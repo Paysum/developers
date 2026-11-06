@@ -1,0 +1,16 @@
+---
+title: "List customers"
+description: "Lists customers with their balance, lifetime spend and order count."
+---
+
+`GET /api/store-api/customers`
+
+Lists customers with their balance, lifetime spend and order count.
+
+Permission: `customers:read`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `limit` | query | integer | no | Number of results to return, between 1 and 100. |
+| `offset` | query | integer | no | Number of results to skip. |
+| `search` | query | string | no | Matches email or name. |

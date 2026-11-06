@@ -1,0 +1,51 @@
+---
+title: "Connect Skinloop"
+description: "Let buyers pay USD orders with CS2 and Rust skins."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Create an API key">
+    In the Skinloop dashboard, create an API key with the checkout:create and checkout:read scopes and the games you accept.
+  </Step>
+  <Step title="Approve your store as a return address">
+    Under Checkout Configuration → Checkout Redirect Origins, add your storefront’s address so buyers can be sent back after paying.
+  </Step>
+  <Step title="Add the webhook">
+    In the dashboard, open Payments → Payment setup. Choose Skinloop and copy the webhook endpoint. In Skinloop, add it as an endpoint for payment.completed and payment.reverted and copy its whsec_ secret.
+  </Step>
+  <Step title="Connect in the dashboard">
+    Paste the API key and webhook secret and select Connect. If you are using test keys, also paste the test API URL shown in your Skinloop dashboard.
+  </Step>
+</Steps>
+
+## USD only
+
+Skinloop prices orders in US dollars, so it suits stores that sell in USD.
+
+## Trade holds
+
+CS2 trades can be held for up to 8 days. An order is fulfilled only when Skinloop reports the payment as completed, and a reverted trade is reported back to you.
+
+## If something does not work
+
+<Note title="What to check">
+  A “disallowed origin” error means your storefront’s address is not in the Checkout Redirect Origins list. If orders stay pending, check that the webhook endpoint subscribes to payment.completed.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Payment methods" href="https://docs.paysum.io/payments" icon="CreditCard">
+    Connect the accounts and wallets buyers use to pay your store.
+  </Card>
+  <Card title="The buyer checkout flow" href="https://docs.paysum.io/checkout-flow" icon="CreditCard">
+    Understand the steps from a product selection to a paid order and delivery.
+  </Card>
+  <Card title="Orders and invoices" href="https://docs.paysum.io/orders" icon="FileText">
+    Find a transaction, inspect its status, and troubleshoot payment or delivery.
+  </Card>
+</CardGroup>

@@ -1,0 +1,47 @@
+---
+title: "Connect OVGC"
+description: "Let buyers pay with gift cards on an OVGC checkout."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Copy your API key">
+    In the OVGC dashboard, open API Keys and copy your payment API key.
+  </Step>
+  <Step title="Set a webhook secret">
+    In the dashboard, open Payments → Payment setup. Choose OVGC and copy the webhook endpoint. In OVGC, open Webhooks, paste the endpoint and choose a secret.
+  </Step>
+  <Step title="Connect in the dashboard">
+    Paste the API key and the same webhook secret into the dialog and select Connect.
+  </Step>
+  <Step title="Place a small order">
+    OVGC has no test mode, so confirm the setup with a small real order.
+  </Step>
+</Steps>
+
+## Checkout timing
+
+An OVGC checkout expires 30 minutes after the buyer opens it. Every payment is checked with OVGC before the order is marked paid.
+
+## If something does not work
+
+<Note title="What to check">
+  An “invalid amount” error means the order is below OVGC’s minimum. “Payment gateway inactive” means your OVGC account needs to be reactivated with OVGC support.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Payment methods" href="https://docs.paysum.io/payments" icon="CreditCard">
+    Connect the accounts and wallets buyers use to pay your store.
+  </Card>
+  <Card title="The buyer checkout flow" href="https://docs.paysum.io/checkout-flow" icon="CreditCard">
+    Understand the steps from a product selection to a paid order and delivery.
+  </Card>
+  <Card title="Orders and invoices" href="https://docs.paysum.io/orders" icon="FileText">
+    Find a transaction, inspect its status, and troubleshoot payment or delivery.
+  </Card>
+</CardGroup>

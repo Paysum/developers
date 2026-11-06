@@ -1,0 +1,51 @@
+---
+title: "Connect SumUp"
+description: "Take card payments on a SumUp hosted checkout."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Create a secret API key">
+    In your SumUp account, open Settings → For Developers → Toolkit → API Keys and create a key. It is shown only once, so copy it straight away.
+  </Step>
+  <Step title="Find your merchant code">
+    Your merchant code (for example MCXXXXXX) is shown in your SumUp profile.
+  </Step>
+  <Step title="Connect in the dashboard">
+    In the dashboard, open Payments → Payment setup. Choose SumUp, paste the key and merchant code and select Connect.
+  </Step>
+  <Step title="Test with a sandbox merchant">
+    Create a sandbox merchant under Developer Settings → Sandboxes and pay with Visa 4200 0000 0000 0091. An amount of 11 always fails.
+  </Step>
+</Steps>
+
+## Supported currencies
+
+SumUp supports BRL, CHF, CLP, COP, CZK, DKK, EUR, GBP, HUF, NOK, PLN, RON, SEK and USD. Set your store currency to one your SumUp account accepts.
+
+## Checkout timing
+
+A SumUp checkout lasts 30 minutes. A buyer who waits longer has to start checkout again.
+
+## If something does not work
+
+<Note title="What to check">
+  If Connect fails, check that the key is a secret key and the merchant code belongs to the same account. If payments fail, compare the store currency with your SumUp account currency.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Payment methods" href="https://docs.paysum.io/payments" icon="CreditCard">
+    Connect the accounts and wallets buyers use to pay your store.
+  </Card>
+  <Card title="The buyer checkout flow" href="https://docs.paysum.io/checkout-flow" icon="CreditCard">
+    Understand the steps from a product selection to a paid order and delivery.
+  </Card>
+  <Card title="Orders and invoices" href="https://docs.paysum.io/orders" icon="FileText">
+    Find a transaction, inspect its status, and troubleshoot payment or delivery.
+  </Card>
+</CardGroup>

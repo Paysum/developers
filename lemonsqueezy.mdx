@@ -1,0 +1,47 @@
+---
+title: "Connect Lemon Squeezy"
+description: "Sell through Lemon Squeezy as merchant of record, so it handles tax and chargebacks."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Create an API key">
+    In Lemon Squeezy, open Settings → API and create an API key.
+  </Step>
+  <Step title="Copy your store ID">
+    Open Settings → Stores and copy the number next to your store. The store currency must match your Paysum store currency.
+  </Step>
+  <Step title="Create one product for Paysum">
+    Create a single product, for example “Order”, with any price. Each checkout replaces its name and price, so you only need one. Copy its variant ID.
+  </Step>
+  <Step title="Add the webhook">
+    Open Settings → Webhooks, add the webhook URL from the Connect dialog, choose a signing secret and tick order_created and order_refunded.
+  </Step>
+  <Step title="Connect in the dashboard">
+    Open Payments → Payment setup → Lemon Squeezy, paste the API key, store ID, variant ID and signing secret, and select Connect. Choose Sandbox to create test-mode checkouts.
+  </Step>
+</Steps>
+
+## Why the webhook is required
+
+Lemon Squeezy can’t look up an order by our order number, so the signed order_created webhook links its order to yours. Without it, orders stay pending.
+
+## If something does not work
+
+<Note title="What to check">
+  If checkout fails with a currency error, set your Lemon Squeezy store currency to your Paysum store currency. If orders stay pending, check the webhook’s signing secret and that order_created is ticked.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Payment methods" href="https://docs.paysum.io/payments" icon="CreditCard">
+    Connect the accounts and wallets buyers use to pay your store.
+  </Card>
+  <Card title="Orders and invoices" href="https://docs.paysum.io/orders" icon="FileText">
+    Find a transaction, inspect its status, and troubleshoot payment or delivery.
+  </Card>
+</CardGroup>

@@ -1,0 +1,59 @@
+---
+title: "Abandoned cart emails"
+description: "Remind buyers who started a checkout but didn’t pay, and see how many came back."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Check your plan">
+    Abandoned cart emails are part of Premium. On Free, the switch stays off with an upgrade link.
+  </Step>
+  <Step title="Turn it on">
+    Open Email → Settings and switch on Send checkout reminders.
+  </Step>
+  <Step title="Fill in the sender details">
+    Reminders use the same From name and reply-to as your campaigns, so set those first.
+  </Step>
+  <Step title="Watch the results">
+    After the first reminders go out, the same card shows how many were sent in the last 30 days, how many buyers came back, and the revenue they brought.
+  </Step>
+</Steps>
+
+## Who gets a reminder
+
+A buyer who entered their email at checkout and left the order unpaid gets one reminder about an hour later. Orders older than 24 hours are not reminded.
+
+## Who is skipped
+
+No reminder is sent if the buyer paid for another order since, unsubscribed from your emails, bounced, or already got a reminder from your store in the last 7 days. Orders created through the API with custom line items are skipped because there is no product page to link back to.
+
+## What the email says
+
+The reminder lists what they picked with the total, says nothing was charged, and links to the product in your store. It has an unsubscribe link; buyers who use it also stop getting your campaigns.
+
+## How recoveries are counted
+
+A reminder counts as recovered when the same buyer pays for an order in your store within 7 days of it being sent.
+
+## If something does not work
+
+<Note title="What to check">
+  If nothing is sent, check that your plan is Premium, the switch is on, the buyer entered an email, and they haven’t unsubscribed or been reminded this week.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Coupons and discounts" href="https://docs.paysum.io/coupons" icon="CreditCard">
+    Create discount codes and verify how they change checkout totals.
+  </Card>
+  <Card title="Referral codes" href="https://docs.paysum.io/referral-codes" icon="Users">
+    Create and manage the referral codes supported by your store.
+  </Card>
+  <Card title="The buyer checkout flow" href="https://docs.paysum.io/checkout-flow" icon="CreditCard">
+    Understand the steps from a product selection to a paid order and delivery.
+  </Card>
+</CardGroup>

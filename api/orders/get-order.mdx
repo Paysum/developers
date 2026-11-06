@@ -1,0 +1,14 @@
+---
+title: "Get order"
+description: "Retrieves one order with its line items and the keys that were delivered."
+---
+
+`GET /api/store-api/orders/{order_id}`
+
+Retrieves one order with its line items and the keys that were delivered.
+
+Permission: `orders:read`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `order_id` | path | string | yes | Order ID. |

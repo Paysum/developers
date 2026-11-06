@@ -1,0 +1,31 @@
+---
+title: "Update coupon"
+description: "Updates the fields you send. Set `is_active` to false to pause a coupon."
+---
+
+`PATCH /api/store-api/coupons/{coupon_id}`
+
+Updates the fields you send. Set `is_active` to false to pause a coupon.
+
+Permission: `coupons:write`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `coupon_id` | path | string | yes | Coupon ID. |
+| `code` | body | string | no | What customers type at checkout. Stored uppercase. |
+| `discount_type` | body | string | no | `percentage` or `fixed`. |
+| `discount_value` | body | number | no | Percent off, or the amount off in the store currency. |
+| `description` | body | string | no | Internal note. |
+| `min_purchase_amount` | body | number | no | Minimum cart subtotal. |
+| `max_discount_amount` | body | number | no | Cap for percentage discounts. |
+| `usage_limit` | body | integer | no | Total redemptions allowed. |
+| `usage_limit_per_customer` | body | integer | no | Redemptions allowed per customer. |
+| `valid_from` | body | string | no | ISO 8601 start time. |
+| `valid_until` | body | string | no | ISO 8601 end time. |
+| `is_active` | body | boolean | no | Accepted at checkout. |
+
+```json
+{
+  "is_active": false
+}
+```

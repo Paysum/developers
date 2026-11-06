@@ -1,0 +1,25 @@
+---
+title: "Deduct balance"
+description: "Debits a customer’s store balance. Fails if the customer does not exist or has insufficient balance."
+---
+
+`POST /api/customer-balance-api/customers/deduct-balance`
+
+Debits a customer’s store balance. Fails if the customer does not exist or has insufficient balance.
+
+Permission: `customer_balance_api`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `email` | body | string | yes | Customer email address. |
+| `amount` | body | number | yes | Positive amount to deduct. |
+| `reason` | body | string | no | Shown in the customer’s transaction history. |
+| `metadata` | body | object | no | Stored with the transaction. |
+
+```json
+{
+  "email": "jane@example.com",
+  "amount": 5,
+  "reason": "Manual adjustment"
+}
+```

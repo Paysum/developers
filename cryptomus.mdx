@@ -1,0 +1,44 @@
+---
+title: "Connect Cryptomus"
+description: "Accept crypto through your own Cryptomus account."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Copy your merchant ID">
+    In Cryptomus, open your merchant and copy the merchant UUID.
+  </Step>
+  <Step title="Copy the payment API key">
+    Open Business → Settings → API and copy the payment API key. Payouts use a different key, so copy the one for payments.
+  </Step>
+  <Step title="Connect in the dashboard">
+    Open Payments → Payment setup → Cryptocurrency. Choose Cryptomus, paste both values and select Connect.
+  </Step>
+</Steps>
+
+## Over- and underpayments
+
+Cryptomus marks overpaid invoices as paid. Buyers can pay an underpaid invoice’s remainder until it expires an hour after checkout.
+
+## If something does not work
+
+<Note title="What to check">
+  If Connect fails, check that you copied the payment API key, not the payout key. If an order is stuck, look up the invoice by its order ID in Cryptomus.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Crypto payments and wallets" href="https://docs.paysum.io/crypto-payments" icon="Wallet">
+    Understand wallet balances, blockchain confirmation, and crypto withdrawals.
+  </Card>
+  <Card title="Payment methods" href="https://docs.paysum.io/payments" icon="CreditCard">
+    Connect the accounts and wallets buyers use to pay your store.
+  </Card>
+  <Card title="Orders and invoices" href="https://docs.paysum.io/orders" icon="FileText">
+    Find a transaction, inspect its status, and troubleshoot payment or delivery.
+  </Card>
+</CardGroup>

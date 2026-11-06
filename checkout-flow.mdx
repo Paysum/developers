@@ -1,0 +1,58 @@
+---
+title: "The buyer checkout flow"
+description: "Understand the steps from a product selection to a paid order and delivery."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Select a product">
+    The customer chooses a product, variant, and quantity on the storefront or follows a hosted checkout link.
+  </Step>
+  <Step title="Provide buyer details">
+    Checkout collects the email address used for the receipt and delivery. A product can also require a Discord connection.
+  </Step>
+  <Step title="Choose payment">
+    The buyer sees the payment methods allowed for this store and product, with any applicable fees or discounts.
+  </Step>
+  <Step title="Review and complete">
+    The customer reviews the amount and policies, then continues through the selected payment method. Delivery follows confirmation.
+  </Step>
+</Steps>
+
+## Totals can change
+
+Coupon discounts, gift cards, payment-method fees, and minimum adjustments can affect the final amount. Check the total shown after selecting the payment method, not just the product’s starting price.
+
+## Return pages and order status
+
+A browser can close or return before payment verification finishes. The order record and provider confirmation determine completion. Developers should use the retrieve-session endpoint or a verified webhook, not only a success URL.
+
+## Embedded checkout
+
+The embed uses the same store and payment configuration. Language selection changes the checkout labels without discarding the buyer’s entered details.
+
+## If something does not work
+
+<Note title="What to check">
+  If a buyer cannot continue, check their email, required Discord connection, payment selection, stock, and policy acceptance. Inspect the displayed error before changing store settings.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Checkout embed" href="https://docs.paysum.io/embed" icon="Code2">
+    Try an interactive checkout, copy the integration, and choose your language.
+  </Card>
+  <Card title="Hosted checkout" href="https://docs.paysum.io/hosted-checkout" icon="CreditCard">
+    Redirect customers to a &#123;brand&#125;-hosted checkout created from your own backend.
+  </Card>
+  <Card title="How delivery works" href="https://docs.paysum.io/delivery" icon="Package">
+    Choose how buyers receive a purchase and verify delivery after payment.
+  </Card>
+  <Card title="Orders and invoices" href="https://docs.paysum.io/orders" icon="FileText">
+    Find a transaction, inspect its status, and troubleshoot payment or delivery.
+  </Card>
+</CardGroup>

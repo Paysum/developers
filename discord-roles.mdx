@@ -1,0 +1,55 @@
+---
+title: "Discord bots and roles"
+description: "Connect a bot and configure the Discord access buyers receive."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Connect a bot">
+    Open Team → Discord bots and follow the token and server setup instructions. Keep the token private.
+  </Step>
+  <Step title="Configure the integration">
+    Open Team → Discord roles and choose the server and integration settings.
+  </Step>
+  <Step title="Attach the right role">
+    Configure the product’s Discord role delivery settings and select the role intended for that purchase.
+  </Step>
+  <Step title="Test permissions">
+    Make sure the bot is in the server, can manage the role, and sits above the role it must assign in Discord’s hierarchy.
+  </Step>
+</Steps>
+
+## Buyer identity
+
+A role-delivery product may require the buyer to connect Discord during checkout. The connected Discord account should be the one that needs access, not the seller’s test account by default.
+
+## Required server access
+
+Review the integration’s join or connection requirements. A successful payment cannot compensate for a bot that is missing permissions or cannot find the relevant member.
+
+## Token handling
+
+Never put a bot token in a storefront theme, browser script, product message, or API example. If a token is exposed, rotate it in Discord and update the connection.
+
+## If something does not work
+
+<Note title="What to check">
+  For a missing role, check the completed order, buyer’s Discord ID, server membership, role ID, bot permissions, and role hierarchy.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="How delivery works" href="https://docs.paysum.io/delivery" icon="Package">
+    Choose how buyers receive a purchase and verify delivery after payment.
+  </Card>
+  <Card title="The buyer checkout flow" href="https://docs.paysum.io/checkout-flow" icon="CreditCard">
+    Understand the steps from a product selection to a paid order and delivery.
+  </Card>
+  <Card title="Teams and permissions" href="https://docs.paysum.io/team-and-permissions" icon="Users">
+    Invite collaborators and give them access appropriate to their work.
+  </Card>
+</CardGroup>

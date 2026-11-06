@@ -1,0 +1,55 @@
+---
+title: "Gift cards"
+description: "Manage gift cards and understand the difference between a gift code and a customer balance."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Open gift cards">
+    Go to Marketing → Gift cards and inspect the creation and management options available for your store.
+  </Step>
+  <Step title="Configure the offer">
+    Set the value and restrictions supported by the editor. Review the generated code before sharing it.
+  </Step>
+  <Step title="Enable redemption">
+    Check the gift-card payment or redemption settings in Payment methods when you want buyers to use codes at checkout.
+  </Step>
+  <Step title="Verify a redemption">
+    Apply the code to a suitable checkout and inspect the discount and remaining amount due.
+  </Step>
+</Steps>
+
+## Treat codes like value
+
+A gift code can represent spendable value. Do not publish private codes in screenshots or use a real customer’s code in documentation.
+
+## Store balance is separate
+
+A gift-card code and a customer’s store balance are different mechanisms. Check the actual redemption or customer balance history before making a manual adjustment.
+
+## Hosted sessions
+
+A Checkout API session can disable gift-card redemption. The code may work on a normal checkout while remaining unavailable on that configured session.
+
+## If something does not work
+
+<Note title="What to check">
+  If a code is rejected, confirm the store, saved gift-card state, value or usage restrictions, and session configuration.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Customers and store balance" href="https://docs.paysum.io/customers" icon="Users">
+    Inspect customer purchases and manage the store-scoped balance API.
+  </Card>
+  <Card title="Payment methods" href="https://docs.paysum.io/payments" icon="CreditCard">
+    Connect the accounts and wallets buyers use to pay your store.
+  </Card>
+  <Card title="Coupons and discounts" href="https://docs.paysum.io/coupons" icon="CreditCard">
+    Create discount codes and verify how they change checkout totals.
+  </Card>
+</CardGroup>

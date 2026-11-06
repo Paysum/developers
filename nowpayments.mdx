@@ -1,0 +1,51 @@
+---
+title: "Connect NOWPayments"
+description: "Accept 300+ coins through your own NOWPayments account."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Copy your API key">
+    In NOWPayments, open Store settings and copy the API key.
+  </Step>
+  <Step title="Generate an IPN secret">
+    In the same settings, generate an IPN secret key. It is shown in full only once.
+  </Step>
+  <Step title="Connect in the dashboard">
+    In the dashboard, open Payments → Payment setup → Cryptocurrency. Choose NOWPayments, paste both keys and select Connect.
+  </Step>
+  <Step title="Test with a small payment">
+    NOWPayments’ sandbox is no longer maintained, so confirm the setup with a small real payment.
+  </Step>
+</Steps>
+
+## When an order is paid
+
+An order is paid when NOWPayments reports the payment as finished, meaning the funds reached your account. Underpayments stay pending for you to review.
+
+## Minimum amounts
+
+NOWPayments sets a minimum per coin, so very small orders may not offer every coin.
+
+## If something does not work
+
+<Note title="What to check">
+  If orders stay pending, check that the IPN secret matches the one in NOWPayments and that your firewall doesn’t block NOWPayments’ notifications.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Crypto payments and wallets" href="https://docs.paysum.io/crypto-payments" icon="Wallet">
+    Understand wallet balances, blockchain confirmation, and crypto withdrawals.
+  </Card>
+  <Card title="Payment methods" href="https://docs.paysum.io/payments" icon="CreditCard">
+    Connect the accounts and wallets buyers use to pay your store.
+  </Card>
+  <Card title="Orders and invoices" href="https://docs.paysum.io/orders" icon="FileText">
+    Find a transaction, inspect its status, and troubleshoot payment or delivery.
+  </Card>
+</CardGroup>

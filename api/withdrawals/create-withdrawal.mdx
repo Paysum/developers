@@ -1,0 +1,31 @@
+---
+title: "Create withdrawal"
+description: "Requests a withdrawal from one of the store’s wallets. The request is accepted as `pending` and processed in the background; subscribe with `webhook_url` to learn the outcome."
+---
+
+`POST /api/withdrawal-api/withdrawals`
+
+Requests a withdrawal from one of the store’s wallets. The request is accepted as `pending` and processed in the background; subscribe with `webhook_url` to learn the outcome.
+
+Permission: `withdrawal_api`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `currency` | body | string | yes | `BTC`, `LTC` or `ETH`. |
+| `amount` | body | number | yes | Amount to withdraw. Minimums: BTC 0.0001, LTC 0.001, ETH 0.001. |
+| `to_address` | body | string | yes | Destination address. Must be valid for the currency and differ from the store wallet. |
+| `webhook_url` | body | string | no | Receives `withdrawal.completed` or `withdrawal.failed`. |
+| `metadata` | body | object | no | Key/value pairs echoed back in webhooks. |
+
+```json
+{
+  "currency": "LTC",
+  "amount": 0.05,
+  "to_address": "ltc1qexampleaddressxxxxxxxxxxxxxxxxxxxxxx",
+  "webhook_url": "https://example.com/webhooks/withdrawals"
+}
+```
+
+<Warning title="Irreversible">
+Crypto transfers cannot be reversed. Validate destination addresses on your side before calling this endpoint.
+</Warning>

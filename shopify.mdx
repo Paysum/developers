@@ -1,0 +1,54 @@
+---
+title: "Connect Shopify"
+description: "Let buyers pay on your Shopify checkout through a draft order invoice."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Create an app in your Dev Dashboard">
+    In Shopify, open the Dev Dashboard for the organization that owns your store and create an app. It must be in the same organization as the store.
+  </Step>
+  <Step title="Grant the scopes">
+    Give the app version the write_draft_orders, read_draft_orders and read_orders Admin API scopes, then release it and install it on your store.
+  </Step>
+  <Step title="Copy the client ID and secret">
+    Open the app’s Settings and copy the Client ID and Client secret.
+  </Step>
+  <Step title="Connect in the dashboard">
+    In the dashboard, open Payments → Payment setup. Choose Shopify, enter your store domain (your-store.myshopify.com) with the client ID and secret, then select Connect.
+  </Step>
+  <Step title="Test on a development store">
+    Use a development store with the Bogus Gateway to place a test order: card number 1 succeeds and 2 declines.
+  </Step>
+</Steps>
+
+## Older custom apps
+
+If you still have a custom app created in the Shopify admin before 2026, you can paste its shpat_ Admin API token instead of a client ID and secret. Shopify no longer allows new apps of that kind.
+
+## What buyers see
+
+Buyers finish payment on Shopify’s checkout and land on Shopify’s thank-you page. Shopify’s tax, shipping and discount settings apply, so keep them consistent with your store prices.
+
+## If something does not work
+
+<Note title="What to check">
+  A shop_not_permitted error means the app was created in a different organization from the store. If an order stays pending, check that the draft order in Shopify was completed and is marked paid.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Payment methods" href="https://docs.paysum.io/payments" icon="CreditCard">
+    Connect the accounts and wallets buyers use to pay your store.
+  </Card>
+  <Card title="The buyer checkout flow" href="https://docs.paysum.io/checkout-flow" icon="CreditCard">
+    Understand the steps from a product selection to a paid order and delivery.
+  </Card>
+  <Card title="Orders and invoices" href="https://docs.paysum.io/orders" icon="FileText">
+    Find a transaction, inspect its status, and troubleshoot payment or delivery.
+  </Card>
+</CardGroup>

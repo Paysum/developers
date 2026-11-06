@@ -1,0 +1,38 @@
+---
+title: "Authentication"
+description: "How store API keys work, which permissions they carry and how to keep them safe."
+---
+
+All API requests authenticate with a store API key sent as a bearer token. A key belongs to exactly one store, so the API never needs a store ID in the URL.
+
+```http
+Authorization: Bearer sk_your_secret_key
+```
+
+## Permissions
+
+Each key carries a list of permissions. Grant only what an integration needs. Store API scopes come in read and write pairs, and a write scope includes the matching read scope.
+
+| Permission | Unlocks |
+| --- | --- |
+| `store:read` | [Store details](https://docs.paysum.io/api/store/get-store) |
+| `products:read` | [Read products and categories](https://docs.paysum.io/api/products/list-products) |
+| `products:write` | [Create, update and delete products](https://docs.paysum.io/api/products/create-product) |
+| `orders:read` | [Orders and deliveries](https://docs.paysum.io/api/orders/list-orders) |
+| `customers:read` | [Customers](https://docs.paysum.io/api/customers/list-customers) |
+| `coupons:read` | [Read coupons](https://docs.paysum.io/api/coupons/list-coupons) |
+| `coupons:write` | [Create, update and delete coupons](https://docs.paysum.io/api/coupons/create-coupon) |
+| `themes:read` | [Read theme code and versions](https://docs.paysum.io/api/theme/list-files) |
+| `themes:write` | [Edit, preview and publish the theme](https://docs.paysum.io/api/theme/write-files) |
+| `checkout_api` | [Checkout sessions](https://docs.paysum.io/api/checkout/create-session) |
+| `withdrawal_api` | [Withdrawals](https://docs.paysum.io/api/withdrawals/list-wallets) |
+| `customer_balance_api` | [Customer balance](https://docs.paysum.io/api/customer-balance/list-customers) |
+| `all` | Every API |
+
+## Key lifecycle
+
+Keys can be disabled or given an expiry date from the dashboard. Requests with a disabled or expired key fail with `401` and the codes `api_key_disabled` or `api_key_expired`. Each successful request updates the key’s last used time so you can spot unused keys.
+
+<Warning title="Keep secrets off the client">
+  Never embed API keys in browser code or mobile apps. Call the API from your backend and expose only what your frontend needs.
+</Warning>

@@ -1,0 +1,16 @@
+---
+title: "List withdrawals"
+description: "Returns withdrawals requested through the API, newest first."
+---
+
+`GET /api/withdrawal-api/withdrawals`
+
+Returns withdrawals requested through the API, newest first.
+
+Permission: `withdrawal_api`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `limit` | query | integer | no | Number of results to return, between 1 and 100. |
+| `offset` | query | integer | no | Number of results to skip. |
+| `status` | query | string | no | Filter by status: `pending`, `completed` or `failed`. |

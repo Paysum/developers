@@ -1,0 +1,47 @@
+---
+title: "Connect Pandabase"
+description: "Sell through Pandabase as merchant of record, so it handles tax and chargebacks."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Copy your store ID">
+    In Pandabase, copy your store ID (it starts with shp_).
+  </Step>
+  <Step title="Create an API token">
+    Open Settings → Developers → API Tokens and create a token with Store read and Orders read access.
+  </Step>
+  <Step title="Add the webhook">
+    In the dashboard, open Payments → Payment setup. Choose Pandabase and copy the webhook endpoint from the dialog. In Pandabase, open Settings → Developers → Webhooks, add the endpoint and copy its secret.
+  </Step>
+  <Step title="Connect in the dashboard">
+    Paste the store ID, API token and webhook secret into the dialog and select Connect.
+  </Step>
+</Steps>
+
+## The webhook is required
+
+Pandabase orders are confirmed only by Pandabase’s signed webhook, so payments won’t confirm until the webhook and its secret are set up.
+
+## If something does not work
+
+<Note title="What to check">
+  If orders stay pending after payment, check that the webhook in Pandabase points at the exact endpoint from the dialog and that its secret matches the one you pasted.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Payment methods" href="https://docs.paysum.io/payments" icon="CreditCard">
+    Connect the accounts and wallets buyers use to pay your store.
+  </Card>
+  <Card title="The buyer checkout flow" href="https://docs.paysum.io/checkout-flow" icon="CreditCard">
+    Understand the steps from a product selection to a paid order and delivery.
+  </Card>
+  <Card title="Orders and invoices" href="https://docs.paysum.io/orders" icon="FileText">
+    Find a transaction, inspect its status, and troubleshoot payment or delivery.
+  </Card>
+</CardGroup>

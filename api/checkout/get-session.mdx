@@ -1,0 +1,14 @@
+---
+title: "Retrieve session"
+description: "Fetches a single session. Pending sessions past their expiry are marked `expired` when read."
+---
+
+`GET /api/checkout-api/sessions/{session_id}`
+
+Fetches a single session. Pending sessions past their expiry are marked `expired` when read.
+
+Permission: `checkout_api`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `session_id` | path | string | yes | The `cs_…` ID returned when the session was created. |

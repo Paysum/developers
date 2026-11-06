@@ -1,0 +1,51 @@
+---
+title: "Connect Authorize.net"
+description: "Take card payments on the Authorize.net Accept Hosted page."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Find your API credentials">
+    In the Authorize.net Merchant Interface, open Account → Settings → Security Settings → API Credentials and Keys.
+  </Step>
+  <Step title="Copy the login ID and transaction key">
+    Copy the API Login ID and generate a new Transaction Key. Generating a key replaces the old one, so update any other system that used it.
+  </Step>
+  <Step title="Connect in the dashboard">
+    In the dashboard, open Payments → Payment setup. Choose Authorize.net, paste the login ID and transaction key, choose Production or Sandbox, then select Connect.
+  </Step>
+  <Step title="Test in the sandbox">
+    With a free sandbox account in Live Mode, pay with Visa 4111 1111 1111 1111 and any future expiry. A billing ZIP of 46282 forces a decline.
+  </Step>
+</Steps>
+
+## Payment page timing
+
+The Authorize.net payment page is valid for 15 minutes after the buyer is sent to it. A buyer who waits longer has to start checkout again.
+
+## Currency
+
+Authorize.net charges in your merchant account’s currency. Set your store currency to match.
+
+## If something does not work
+
+<Note title="What to check">
+  Response reason code 13 means sandbox and production credentials were mixed up. If a sandbox payment returns transaction ID 0, switch the sandbox account from Test Mode to Live Mode.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Payment methods" href="https://docs.paysum.io/payments" icon="CreditCard">
+    Connect the accounts and wallets buyers use to pay your store.
+  </Card>
+  <Card title="The buyer checkout flow" href="https://docs.paysum.io/checkout-flow" icon="CreditCard">
+    Understand the steps from a product selection to a paid order and delivery.
+  </Card>
+  <Card title="Orders and invoices" href="https://docs.paysum.io/orders" icon="FileText">
+    Find a transaction, inspect its status, and troubleshoot payment or delivery.
+  </Card>
+</CardGroup>

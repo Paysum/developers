@@ -1,0 +1,14 @@
+---
+title: "Retrieve withdrawal"
+description: "Fetches a single withdrawal, including the transaction hash once it is broadcast."
+---
+
+`GET /api/withdrawal-api/withdrawals/{withdrawal_id}`
+
+Fetches a single withdrawal, including the transaction hash once it is broadcast.
+
+Permission: `withdrawal_api`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `withdrawal_id` | path | string | yes | The ID returned when the withdrawal was created. |

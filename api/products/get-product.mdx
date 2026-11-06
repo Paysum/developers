@@ -1,0 +1,14 @@
+---
+title: "Get product"
+description: "Retrieves one product. Delivery keys are never returned, only `key_count`."
+---
+
+`GET /api/store-api/products/{product_id}`
+
+Retrieves one product. Delivery keys are never returned, only `key_count`.
+
+Permission: `products:read`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `product_id` | path | string | yes | Product ID. |

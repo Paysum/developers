@@ -1,0 +1,33 @@
+---
+title: "Create coupon"
+description: "Creates a coupon. Codes are unique per store and stored uppercase."
+---
+
+`POST /api/store-api/coupons`
+
+Creates a coupon. Codes are unique per store and stored uppercase.
+
+Permission: `coupons:write`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `code` | body | string | yes | What customers type at checkout. Stored uppercase. |
+| `discount_type` | body | string | yes | `percentage` or `fixed`. |
+| `discount_value` | body | number | yes | Percent off, or the amount off in the store currency. |
+| `description` | body | string | no | Internal note. |
+| `min_purchase_amount` | body | number | no | Minimum cart subtotal. |
+| `max_discount_amount` | body | number | no | Cap for percentage discounts. |
+| `usage_limit` | body | integer | no | Total redemptions allowed. |
+| `usage_limit_per_customer` | body | integer | no | Redemptions allowed per customer. |
+| `valid_from` | body | string | no | ISO 8601 start time. |
+| `valid_until` | body | string | no | ISO 8601 end time. |
+| `is_active` | body | boolean | no | Accepted at checkout. |
+
+```json
+{
+  "code": "spring10",
+  "discount_type": "percentage",
+  "discount_value": 10,
+  "usage_limit": 500
+}
+```

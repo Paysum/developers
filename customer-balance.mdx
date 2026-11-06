@@ -1,0 +1,44 @@
+---
+title: "Customer balance"
+description: "Let customers pay instantly from store credit you manage."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Turn on the method">
+    In the dashboard, open Payments → Payment setup. Choose Customer balance and select Turn on.
+  </Step>
+  <Step title="Add credit">
+    Open Customers, choose a customer and add balance, or use the customer balance API.
+  </Step>
+  <Step title="Check out with balance">
+    At checkout, signed-in customers with enough balance can pay with it. The order completes immediately.
+  </Step>
+</Steps>
+
+## Fees and refunds
+
+Balance payments have no provider fee. Refunding to balance is a quick way to make good on an order without reversing a card payment.
+
+## If something does not work
+
+<Note title="What to check">
+  If customers don’t see the option, check that they are signed in with the email that holds the balance and that the balance covers the whole order.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Customers and store balance" href="https://docs.paysum.io/customers" icon="Users">
+    Inspect customer purchases and manage the store-scoped balance API.
+  </Card>
+  <Card title="Add balance" href="https://docs.paysum.io/api/customer-balance/add-balance" icon="BookOpen">
+    
+  </Card>
+  <Card title="Payment methods" href="https://docs.paysum.io/payments" icon="CreditCard">
+    Connect the accounts and wallets buyers use to pay your store.
+  </Card>
+</CardGroup>

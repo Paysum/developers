@@ -1,0 +1,24 @@
+---
+title: "List transactions"
+description: "Returns a customer’s balance history. Pagination parameters go in the body for this endpoint."
+---
+
+`POST /api/customer-balance-api/customers/transactions`
+
+Returns a customer’s balance history. Pagination parameters go in the body for this endpoint.
+
+Permission: `customer_balance_api`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `email` | body | string | yes | Customer email address. |
+| `type` | body | string | no | Filter by `credit` or `debit`. |
+| `limit` | body | integer | no | Between 1 and 100. |
+| `offset` | body | integer | no | Number of results to skip. |
+
+```json
+{
+  "email": "jane@example.com",
+  "limit": 20
+}
+```

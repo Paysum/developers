@@ -1,0 +1,24 @@
+---
+title: "Retrieve customer"
+description: "Looks up one customer by email. The email goes in the JSON body, never in the URL."
+---
+
+`POST /api/customer-balance-api/customers/info`
+
+Looks up one customer by email. The email goes in the JSON body, never in the URL.
+
+Permission: `customer_balance_api`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `email` | body | string | yes | Customer email address. |
+
+```json
+{
+  "email": "jane@example.com"
+}
+```
+
+<Warning title="Note">
+Emails in URL paths (for example `/customers/&#123;email&#125;`) are rejected with `deprecated_endpoint`. Always send the email in the body.
+</Warning>

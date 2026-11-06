@@ -1,0 +1,44 @@
+---
+title: "Connect Heleket"
+description: "Accept crypto through your own Heleket account."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Copy your merchant ID">
+    In Heleket, open your merchant settings and copy the merchant UUID.
+  </Step>
+  <Step title="Copy the payment API key">
+    Open Business → Settings → API and copy the payment API key. Payouts use a different key, so copy the one for payments.
+  </Step>
+  <Step title="Connect in the dashboard">
+    In the dashboard, open Payments → Payment setup → Cryptocurrency. Choose Heleket, paste both values and select Connect.
+  </Step>
+</Steps>
+
+## Over- and underpayments
+
+Heleket marks overpaid invoices as paid. Underpaid invoices stay open until the buyer pays the rest or the invoice expires.
+
+## If something does not work
+
+<Note title="What to check">
+  If Connect fails, check that you copied the payment API key, not the payout key. If an order is stuck, look up the invoice by its order ID in Heleket.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Crypto payments and wallets" href="https://docs.paysum.io/crypto-payments" icon="Wallet">
+    Understand wallet balances, blockchain confirmation, and crypto withdrawals.
+  </Card>
+  <Card title="Payment methods" href="https://docs.paysum.io/payments" icon="CreditCard">
+    Connect the accounts and wallets buyers use to pay your store.
+  </Card>
+  <Card title="Orders and invoices" href="https://docs.paysum.io/orders" icon="FileText">
+    Find a transaction, inspect its status, and troubleshoot payment or delivery.
+  </Card>
+</CardGroup>

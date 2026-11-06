@@ -1,0 +1,37 @@
+---
+title: "Update product"
+description: "Updates the fields you send and leaves the rest alone. Adding stock or keys to a sold-out product emails customers who asked to be notified."
+---
+
+`PATCH /api/store-api/products/{product_id}`
+
+Updates the fields you send and leaves the rest alone. Adding stock or keys to a sold-out product emails customers who asked to be notified.
+
+Permission: `products:write`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `product_id` | path | string | yes | Product ID. |
+| `title` | body | string | no | Product name. |
+| `price` | body | number | no | Price in the store currency. |
+| `description` | body | string | no | Shown on the product page. Markdown is supported. |
+| `compareAtPrice` | body | number | no | Original price, shown struck through. |
+| `category` | body | string | no | Category name. |
+| `tags` | body | string[] | no | Search and filter tags. |
+| `image` | body | string | no | Image URL, or a base64 data URL to upload. |
+| `images` | body | string[] | no | Gallery images. |
+| `stock` | body | integer | no | Units in stock. |
+| `limited_stock` | body | boolean | no | Stop selling when `stock` reaches 0. |
+| `use_product_keys` | body | boolean | no | Deliver one key from `digital_keys` per unit sold. |
+| `digital_keys` | body | string[] | no | Keys to deliver. Never returned by the API; responses show `key_count`. |
+| `max_per_order` | body | integer | no | Per-order quantity cap. |
+| `is_active` | body | boolean | no | Listed on the storefront. |
+| `is_featured` | body | boolean | no | Shown in featured sections. |
+| `variants` | body | object[] | no | Variants with their own name, price and stock. |
+
+```json
+{
+  "price": 17.99,
+  "is_featured": true
+}
+```

@@ -1,0 +1,14 @@
+---
+title: "Delete product"
+description: "Permanently deletes a product. Past orders keep their line items. To hide a product instead, set `is_active` to false."
+---
+
+`DELETE /api/store-api/products/{product_id}`
+
+Permanently deletes a product. Past orders keep their line items. To hide a product instead, set `is_active` to false.
+
+Permission: `products:write`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `product_id` | path | string | yes | Product ID. |

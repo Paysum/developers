@@ -1,0 +1,78 @@
+---
+title: "Developer platform"
+description: "Every way to build on {brand}: REST API, theme CLI, MCP server, checkout embed and webhooks."
+---
+
+<p>
+	Everything you can do in the dashboard has a programmable route. Pick the one that fits what you are
+	building; they all use the same store API keys, so one key system covers every tool.
+</p>
+<CardGroup cols={2}>
+	<Card title="Store API" href="https://docs.paysum.io/api" icon="Brackets">
+		REST endpoints for products, orders, customers, coupons and theme code.
+	</Card>
+	<Card title="Theme CLI" href="https://docs.paysum.io/cli" icon="Terminal">
+		Edit your storefront in your own editor with a live preview, then publish.
+	</Card>
+	<Card title="MCP server" href="https://docs.paysum.io/mcp" icon="Integrations">
+		Let Cursor, Claude and other assistants work on your store with a scoped key.
+	</Card>
+	<Card title="Checkout" href="https://docs.paysum.io/hosted-checkout" icon="CreditCard">
+		Hosted checkout sessions, a drop-in embed, or Elements for a checkout built into your own page.
+	</Card>
+	<Card title="Webhooks" href="https://docs.paysum.io/webhooks" icon="Webhook">
+		Signed events when payments complete and withdrawals settle.
+	</Card>
+	<Card title="Authentication" href="https://docs.paysum.io/authentication" icon="Lock">
+		Create keys, choose scopes and keep secrets safe.
+	</Card>
+</CardGroup>
+
+## Which one do I need?
+
+<table>
+	<thead>
+		<tr>
+			<th>You want to</th>
+			<th>Use</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Sync products from another system or export orders</td>
+			<td><a href="https://docs.paysum.io/api/products/list-products">Store API</a></td>
+		</tr>
+		<tr>
+			<td>Build a custom storefront theme with Git and your own editor</td>
+			<td><a href="https://docs.paysum.io/cli">Theme CLI</a></td>
+		</tr>
+		<tr>
+			<td>Ask an AI assistant to add products, run a sale or restyle the theme</td>
+			<td><a href="https://docs.paysum.io/mcp">MCP server</a></td>
+		</tr>
+		<tr>
+			<td>Sell from your own website or app</td>
+			<td>
+				<a href="https://docs.paysum.io/embed">Checkout embed</a> or
+				<a href="https://docs.paysum.io/hosted-checkout">hosted checkout</a>
+			</td>
+		</tr>
+		<tr>
+			<td>Design your own checkout page and keep payment on Paysum</td>
+			<td><a href="https://docs.paysum.io/elements">Checkout Elements</a></td>
+		</tr>
+		<tr>
+			<td>Deliver custom goods after payment</td>
+			<td><a href="https://docs.paysum.io/webhooks">Webhooks</a></td>
+		</tr>
+	</tbody>
+</table>
+
+## Keys and scopes
+
+<p>
+	Keys are created in <strong>Dashboard → Developers → API keys</strong>. Each key belongs to one store
+	and carries scopes such as <code>products:read</code> or <code>themes:write</code>. A write scope
+	includes the matching read scope. See <a href="https://docs.paysum.io/authentication">Authentication</a> for the
+	full list.
+</p>

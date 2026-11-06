@@ -1,0 +1,74 @@
+---
+title: "Introduction"
+description: "Create a store, sell your first product, and build integrations with Paysum."
+---
+
+<p>
+	Paysum is a hosted platform for selling digital products - license keys, files, Discord roles
+	and more - with automated delivery, card, PayPal and crypto payments, custom domains and fraud
+	protection. These docs cover running a store from the dashboard and integrating it with your own
+	systems through the API.
+</p>
+
+## Start with your store
+
+<CardGroup cols={2}>
+	<Card title="Create your first store" href="https://docs.paysum.io/store-quickstart" icon="Rocket">
+		Name your shop, add a product, connect payments, and test the buyer’s journey.
+	</Card>
+	<Card title="Products and delivery" href="https://docs.paysum.io/delivery" icon="Package">
+		Set up variants, keys, downloads, and the information customers receive.
+	</Card>
+	<Card title="Connect payments" href="https://docs.paysum.io/payments" icon="CreditCard">
+		Configure the payment methods that work for your store and products.
+	</Card>
+	<Card title="Make it yours" href="https://docs.paysum.io/themes" icon="Store">
+		Choose a theme, customize your storefront, and connect a domain.
+	</Card>
+</CardGroup>
+
+## Build on Paysum
+
+<CardGroup cols={2}>
+	<Card title="Preview the checkout embed" href="https://docs.paysum.io/embed" icon="Code2">
+		Try the real modal checkout, appearance settings, languages, and copy button code.
+	</Card>
+	<Card title="API reference" href="https://docs.paysum.io/api" icon="Brackets">
+		Explore supported endpoints, examples, errors, and the OpenAPI specification.
+	</Card>
+	<Card title="Hosted checkout" href="https://docs.paysum.io/hosted-checkout" icon="CreditCard">
+		Create checkout sessions on your server and send buyers to payment.
+	</Card>
+	<Card title="Theme CLI" href="https://docs.paysum.io/cli" icon="Terminal">
+		Edit your storefront in your own editor with a live preview, then publish.
+	</Card>
+	<Card title="MCP server" href="https://docs.paysum.io/mcp" icon="Integrations">
+		Let AI assistants manage products, coupons and your theme with a scoped key.
+	</Card>
+</CardGroup>
+
+## What the API covers
+
+<p>The public API is organised by resource, each unlocked by its own key permission:</p>
+<ul>
+	<li>
+		<strong>Store API</strong> - products, orders, customers, coupons and theme code for the store the
+		key belongs to.
+	</li>
+	<li>
+		<strong>Checkout sessions</strong> - create hosted checkouts for custom line items or products in
+		your store, then track or cancel them.
+	</li>
+	<li>
+		<strong>Withdrawals</strong> - read crypto wallet balances and send payouts to external addresses.
+	</li>
+	<li>
+		<strong>Customer balance</strong> - look up customers and credit or debit their store balance.
+	</li>
+</ul>
+<Tip title="Prefer the dashboard?">
+	<p>
+		Everything in the Guides tab can be done without code. The API is optional and only needed when
+		you want to automate or embed Paysum in another product.
+	</p>
+</Tip>

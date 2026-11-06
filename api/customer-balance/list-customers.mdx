@@ -1,0 +1,17 @@
+---
+title: "List customers"
+description: "Lists the store’s customers with their balances, newest first."
+---
+
+`GET /api/customer-balance-api/customers`
+
+Lists the store’s customers with their balances, newest first.
+
+Permission: `customer_balance_api`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `limit` | query | integer | no | Number of results to return, between 1 and 100. |
+| `offset` | query | integer | no | Number of results to skip. |
+| `min_balance` | query | number | no | Only customers with at least this balance. |
+| `search` | query | string | no | Case-insensitive match on email or name. |

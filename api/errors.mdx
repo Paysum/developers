@@ -1,0 +1,39 @@
+---
+title: "Errors"
+description: "HTTP status codes and error bodies returned by the API."
+---
+
+Errors use conventional HTTP status codes and a consistent body: a machine-readable `error` code and a human-readable `message`. Some errors add context fields such as `retry_after`.
+
+```json
+{
+  "error": "permission_denied",
+  "message": "API key does not have withdrawal_api permission."
+}
+```
+
+## Common codes
+
+| Code | Status | Meaning |
+| --- | --- | --- |
+| `invalid_request` | 400 | A required field is missing or has the wrong type. |
+| `product_not_found` | 400 | A product in `product_ids` does not exist in this store. |
+| `insufficient_stock` | 400 | Not enough stock for the requested quantity. |
+| `insufficient_balance` | 400 | The wallet or customer balance is too low. |
+| `deprecated_endpoint` | 400 | An old URL shape was used; the message names the replacement. |
+| `unauthorized` | 401 | The Authorization header is missing or not a bearer token. |
+| `invalid_api_key` | 401 | The key is unknown or not in `sk_` format. |
+| `api_key_disabled` | 401 | The key was disabled in the dashboard. |
+| `api_key_expired` | 401 | The key passed its expiry date. |
+| `permission_denied` | 403 | The key lacks the permission this API needs. |
+| `not_found` | 404 | The resource does not exist in this store. |
+| `session_not_found` | 404 | No such checkout session in this store. |
+| `method_not_allowed` | 405 | The path exists but not with this HTTP method. |
+| `conflict` | 409 | A coupon code is taken, or the resource changed. Retry the latter. |
+| `build_failed` | 422 | The theme did not compile. The message lists the first errors. |
+| `rate_limit_exceeded` | 429 | The hourly limit for this key was reached. |
+| `creation_failed` | 500 | Something went wrong on our side. Retry later. |
+
+<Tip title="Branch on the code">
+  Branch on `error`, not on `message`. Messages may be reworded.
+</Tip>

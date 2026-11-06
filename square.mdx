@@ -1,0 +1,58 @@
+---
+title: "Connect Square"
+description: "Accept cards, Apple Pay, Google Pay and Cash App Pay on a Square payment link."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Create a Square app">
+    Sign in to the Square Developer Console and create an application for your own business. You only need it to issue credentials for your account.
+  </Step>
+  <Step title="Copy the access token and location">
+    Open the app’s Credentials page and copy the Production access token (or the Sandbox token for testing). Then open Locations and copy the ID of the location that should receive payments.
+  </Step>
+  <Step title="Connect in the dashboard">
+    In the dashboard, open Payments → Payment setup. Choose Square, paste the access token and location ID, pick Production or Sandbox to match the token, then select Connect. The token is checked before it is saved.
+  </Step>
+  <Step title="Add the webhook">
+    Copy the webhook endpoint shown in the Square dialog. In your Square app, open Webhooks → Subscriptions, add the endpoint for payment.updated, and paste the subscription’s signature key back into the dialog.
+  </Step>
+  <Step title="Place a test order">
+    Buy a product with Square selected. In Sandbox, use the Visa test card 4111 1111 1111 1111 with CVV 111 and any future expiry.
+  </Step>
+</Steps>
+
+## Use matching credentials
+
+A Sandbox token only works with the Sandbox environment and a Production token only with Production. A mismatch shows up as an authentication error when you connect.
+
+## Turn off tipping
+
+Square can add an automatic tip on payment links in some regions, which changes the amount charged. Keep tipping off in your Square checkout settings so the buyer pays the order total.
+
+## Currency
+
+Square charges in your location’s currency. Set your store currency to match the location you connected.
+
+## If something does not work
+
+<Note title="What to check">
+  If Connect fails, check that the token and environment match and that the location ID belongs to the same account. If buyers pay but orders stay pending, check that the webhook subscription includes payment.updated and that the signature key was pasted into the dialog.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Payment methods" href="https://docs.paysum.io/payments" icon="CreditCard">
+    Connect the accounts and wallets buyers use to pay your store.
+  </Card>
+  <Card title="The buyer checkout flow" href="https://docs.paysum.io/checkout-flow" icon="CreditCard">
+    Understand the steps from a product selection to a paid order and delivery.
+  </Card>
+  <Card title="Orders and invoices" href="https://docs.paysum.io/orders" icon="FileText">
+    Find a transaction, inspect its status, and troubleshoot payment or delivery.
+  </Card>
+</CardGroup>

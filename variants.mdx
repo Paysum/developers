@@ -1,0 +1,51 @@
+---
+title: "Product variants"
+description: "Offer different editions, durations, or packages without duplicating your product page."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Open the product">
+    Go to Core → Products and open the product editor.
+  </Step>
+  <Step title="Add meaningful variants">
+    Create a variant for each option customers can actually choose. Give each one a clear name and the correct price.
+  </Step>
+  <Step title="Configure stock and delivery">
+    Review the stock and delivery settings used by each variant. A visible option must have a valid fulfillment path.
+  </Step>
+  <Step title="Try the choices">
+    Open the public product page and check that changing the variant changes the selected option and price as expected.
+  </Step>
+</Steps>
+
+## Stable identifiers for integrations
+
+Use the product and variant IDs in API integrations. Names can change; an ID is a safer reference for automation. The Checkout API accepts variant_id with a product_ids item.
+
+## Payment restrictions
+
+Product and variant restrictions can reduce the payment methods shown at checkout. Test the exact variant you intend to sell, especially if the store has several methods enabled.
+
+## If something does not work
+
+<Note title="What to check">
+  If a variant cannot be purchased, check its stock, saved price, enabled state, and payment restrictions. Test the same variant through the storefront before debugging an external integration.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Products" href="https://docs.paysum.io/products" icon="Package">
+    Digital products, variants, stock and automated delivery.
+  </Card>
+  <Card title="How delivery works" href="https://docs.paysum.io/delivery" icon="Package">
+    Choose how buyers receive a purchase and verify delivery after payment.
+  </Card>
+  <Card title="Hosted checkout" href="https://docs.paysum.io/hosted-checkout" icon="CreditCard">
+    Redirect customers to a &#123;brand&#125;-hosted checkout created from your own backend.
+  </Card>
+</CardGroup>

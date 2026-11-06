@@ -1,0 +1,47 @@
+---
+title: "Connect NMI"
+description: "Take card payments through your NMI merchant account."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Create a private security key">
+    In the NMI merchant portal, open Options → Settings → Security Keys and create a private API key.
+  </Step>
+  <Step title="Create a tokenization key">
+    On the same page, create a public key with the Tokenization permission. Checkout uses it to collect card details securely.
+  </Step>
+  <Step title="Connect in the dashboard">
+    In the dashboard, open Payments → Payment setup. Choose NMI, paste both keys and select Connect.
+  </Step>
+  <Step title="Test with a sandbox key">
+    Use an NMI sandbox account, or test mode on your live account, with the Visa test card 4111 1111 1111 1111 and expiry 10/29. Amounts under 1.00 decline in test mode.
+  </Step>
+</Steps>
+
+## Where card details are entered
+
+Card fields appear in NMI’s secure payment sheet on your checkout rather than on a separate NMI page. The card number goes straight to NMI and never reaches your store.
+
+## If something does not work
+
+<Note title="What to check">
+  If payments decline, read the reason in the NMI transaction list. Make sure the private key is an API key and the public key has the Tokenization permission.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Payment methods" href="https://docs.paysum.io/payments" icon="CreditCard">
+    Connect the accounts and wallets buyers use to pay your store.
+  </Card>
+  <Card title="The buyer checkout flow" href="https://docs.paysum.io/checkout-flow" icon="CreditCard">
+    Understand the steps from a product selection to a paid order and delivery.
+  </Card>
+  <Card title="Orders and invoices" href="https://docs.paysum.io/orders" icon="FileText">
+    Find a transaction, inspect its status, and troubleshoot payment or delivery.
+  </Card>
+</CardGroup>

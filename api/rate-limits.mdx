@@ -1,0 +1,26 @@
+---
+title: "Rate limits"
+description: "Hourly limits per API key."
+---
+
+Requests are rate limited per API key in fixed one-hour windows.
+
+| API | Limit |
+| --- | --- |
+| Store API and MCP tool calls, combined | 1,000 requests / hour |
+| Publish theme (also counts toward the limit above) | 30 requests / hour |
+| Create checkout session | 100 requests / hour |
+| Create withdrawal | 50 requests / hour |
+| Add or deduct customer balance | 100 requests / hour |
+
+## Headers
+
+Rate-limited responses include headers describing the current window:
+
+```http
+X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 87
+X-RateLimit-Reset: 2026-03-04T19:00:00.000Z
+```
+
+When the limit is reached the API answers `429` with a `Retry-After` header (seconds) and a matching `retry_after` field. Wait that long before retrying.

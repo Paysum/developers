@@ -1,0 +1,55 @@
+---
+title: "Customers and store balance"
+description: "Inspect customer purchases and manage the store-scoped balance API."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Open Customers">
+    Choose the correct store and open Core → Customers.
+  </Step>
+  <Step title="Find the account">
+    Search by the customer’s email or identifying details and check the purchase history.
+  </Step>
+  <Step title="Review balances carefully">
+    A customer balance belongs to a particular store. It is different from your cryptocurrency wallet balance.
+  </Step>
+  <Step title="Automate only when needed">
+    Use the Customer Balance API with a key carrying customer_balance_api permission for supported lookups and balance changes.
+  </Step>
+</Steps>
+
+## Credit and debit workflows
+
+Record your own reference for each adjustment and inspect the API response. Network errors can leave the outcome uncertain, so check the transaction history before repeating a request.
+
+## Keep identities consistent
+
+Use the same buyer email when matching a storefront purchase to a customer. Do not assume that a display name uniquely identifies an account.
+
+## Balance at checkout
+
+A balance payment requires the relevant customer session and enough available balance. Enabling the method does not grant a balance to every visitor.
+
+## If something does not work
+
+<Note title="What to check">
+  If a balance appears missing, confirm the store, email, customer session, and adjustment history. Do not confuse a store customer balance with funds available for a wallet withdrawal.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Retrieve customer" href="https://docs.paysum.io/api/customer-balance/get-customer" icon="BookOpen">
+    
+  </Card>
+  <Card title="List transactions" href="https://docs.paysum.io/api/customer-balance/list-transactions" icon="BookOpen">
+    
+  </Card>
+  <Card title="Payment methods" href="https://docs.paysum.io/payments" icon="CreditCard">
+    Connect the accounts and wallets buyers use to pay your store.
+  </Card>
+</CardGroup>

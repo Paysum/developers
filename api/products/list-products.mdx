@@ -1,0 +1,18 @@
+---
+title: "List products"
+description: "Lists products, newest first."
+---
+
+`GET /api/store-api/products`
+
+Lists products, newest first.
+
+Permission: `products:read`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `limit` | query | integer | no | Number of results to return, between 1 and 100. |
+| `offset` | query | integer | no | Number of results to skip. |
+| `search` | query | string | no | Matches the product title. |
+| `category` | query | string | no | Exact category name. |
+| `active` | query | boolean | no | Only active or inactive. |

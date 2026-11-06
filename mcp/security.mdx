@@ -1,0 +1,67 @@
+---
+title: "Security"
+description: "Scope keys for assistants, review writes and handle prompt injection."
+---
+
+
+## Give assistants their own key
+
+<p>
+	Create a separate key for each assistant or teammate so you can see its activity and revoke it without
+	touching anything else. The key’s <strong>last used</strong> time in the dashboard shows whether it is
+	still in use.
+</p>
+
+## Start read-only
+
+<p>
+	A key with only <code>:read</code> scopes cannot change anything, and the assistant does not even see
+	the write tools. Add write scopes for the resources you want it to manage.
+</p>
+<table>
+	<thead>
+		<tr>
+			<th>Goal</th>
+			<th>Scopes</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Reporting and questions</td>
+			<td>
+				<code>store:read</code>, <code>products:read</code>, <code>orders:read</code>,
+				<code>customers:read</code>
+			</td>
+		</tr>
+		<tr>
+			<td>Catalog manager</td>
+			<td><code>products:write</code>, <code>coupons:write</code></td>
+		</tr>
+		<tr>
+			<td>Theme designer</td>
+			<td><code>store:read</code>, <code>themes:write</code></td>
+		</tr>
+	</tbody>
+</table>
+
+## Review before it happens
+
+<p>
+	Tools are labelled read-only or destructive so clients can ask before running them. Keep approval on
+	for <code>delete_*</code> and <code>publish_theme</code>. Theme edits stay as drafts until publish, and
+	every publish can be rolled back from the dashboard.
+</p>
+<Warning title="Prompt injection">
+	<p>
+		Product descriptions, order notes and customer names come from people outside your business. An
+		assistant that reads them could be steered by text written there. Use the smallest scopes that work,
+		and review write actions on keys that can also read customer data.
+	</p>
+</Warning>
+
+## Revoke
+
+<p>
+	Delete the key in <strong>Developers → API keys</strong>. Requests fail immediately with
+	<code>invalid_api_key</code>.
+</p>

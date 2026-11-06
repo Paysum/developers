@@ -1,0 +1,14 @@
+---
+title: "List theme files"
+description: "Returns every file in the theme’s draft project. `source` is `template_files` once drafts exist; before that the files come from the store’s current theme. `sha256` lets you detect changes without downloading content."
+---
+
+`GET /api/store-api/theme/files`
+
+Returns every file in the theme’s draft project. `source` is `template_files` once drafts exist; before that the files come from the store’s current theme. `sha256` lets you detect changes without downloading content.
+
+Permission: `themes:read`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `content` | query | boolean | no | Set to `false` for paths, sizes and hashes only. |

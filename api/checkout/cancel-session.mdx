@@ -1,0 +1,14 @@
+---
+title: "Cancel session"
+description: "Cancels a session that has not been paid. Completed sessions cannot be cancelled."
+---
+
+`POST /api/checkout-api/sessions/{session_id}/cancel`
+
+Cancels a session that has not been paid. Completed sessions cannot be cancelled.
+
+Permission: `checkout_api`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `session_id` | path | string | yes | The session to cancel. |

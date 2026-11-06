@@ -1,0 +1,25 @@
+---
+title: "Add balance"
+description: "Credits a customer’s store balance. Customers that do not exist yet are created."
+---
+
+`POST /api/customer-balance-api/customers/add-balance`
+
+Credits a customer’s store balance. Customers that do not exist yet are created.
+
+Permission: `customer_balance_api`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `email` | body | string | yes | Customer email address. |
+| `amount` | body | number | yes | Positive amount to add. |
+| `reason` | body | string | no | Shown in the customer’s transaction history. |
+| `metadata` | body | object | no | Stored with the transaction. |
+
+```json
+{
+  "email": "jane@example.com",
+  "amount": 10,
+  "reason": "Referral reward"
+}
+```

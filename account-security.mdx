@@ -1,0 +1,51 @@
+---
+title: "Account security"
+description: "Protect your dashboard account, credentials, and connected integrations."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Review your account">
+    Open Account from the dashboard user menu and inspect the available security settings.
+  </Step>
+  <Step title="Use a strong password">
+    Use a unique password and the additional sign-in protection available in your account settings.
+  </Step>
+  <Step title="Limit shared access">
+    Invite collaborators through Teams instead of sharing an account. Create narrowly scoped API keys for integrations.
+  </Step>
+  <Step title="Revoke exposed secrets">
+    Disable or replace an exposed API key, payment credential, or bot token through the service that issued it, then update the integration.
+  </Step>
+</Steps>
+
+## Keep secrets out of the browser
+
+Secret keys belong on a backend or in the platform’s integration settings. A checkout embed needs product and store identifiers, not a secret API key.
+
+## When reporting a problem
+
+Send support the relevant endpoint, timestamp, request ID, or order reference. Redact authorization headers, payment credentials, and buyer information that is not needed to investigate.
+
+## If something does not work
+
+<Note title="What to check">
+  If you suspect unauthorized changes, secure the account first, review team access and audit logs, and rotate the affected integration credentials.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Teams and permissions" href="https://docs.paysum.io/team-and-permissions" icon="Users">
+    Invite collaborators and give them access appropriate to their work.
+  </Card>
+  <Card title="Authentication" href="https://docs.paysum.io/authentication" icon="Lock">
+    How store API keys work, which permissions they carry and how to keep them safe.
+  </Card>
+  <Card title="Support" href="https://docs.paysum.io/support" icon="MessageSquare">
+    How to reach the &#123;brand&#125; team.
+  </Card>
+</CardGroup>

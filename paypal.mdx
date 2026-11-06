@@ -1,0 +1,51 @@
+---
+title: "Connect PayPal"
+description: "Set up PayPal and distinguish standard checkout from Friends & Family settings."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Choose the correct method">
+    PayPal and PayPal Friends & Family are separate methods with different setup and verification requirements.
+  </Step>
+  <Step title="Follow the setup panel">
+    Open the PayPal method in payment settings and follow the account and callback instructions shown there.
+  </Step>
+  <Step title="Review IPN instructions when applicable">
+    If your method requires IPN, configure the exact notification URL shown by the dashboard. Do not substitute a storefront URL.
+  </Step>
+  <Step title="Verify with an order">
+    Check the receiving account, the payment record, and the platform order status after completing the transaction.
+  </Step>
+</Steps>
+
+## Callbacks and confirmation
+
+A successful redirect back to checkout does not confirm settlement by itself. The platform must receive the provider notification or verify the payment through the configured integration.
+
+## Separate account settings
+
+Credentials and setup instructions for standard PayPal checkout are not interchangeable with the Friends & Family flow. Follow the instructions for the exact method you enabled.
+
+## If something does not work
+
+<Note title="What to check">
+  If a transaction exists in PayPal but an order is unpaid, verify the receiving account and notification configuration. Include the order and provider transaction references when contacting support; never share API secrets.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Payment methods" href="https://docs.paysum.io/payments" icon="CreditCard">
+    Connect the accounts and wallets buyers use to pay your store.
+  </Card>
+  <Card title="Orders and invoices" href="https://docs.paysum.io/orders" icon="FileText">
+    Find a transaction, inspect its status, and troubleshoot payment or delivery.
+  </Card>
+  <Card title="Webhooks" href="https://docs.paysum.io/webhooks" icon="Webhook">
+    Receive signed events when checkout sessions and withdrawals change state.
+  </Card>
+</CardGroup>

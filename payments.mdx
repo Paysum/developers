@@ -1,0 +1,64 @@
+---
+title: "Payment methods"
+description: "Connect the accounts and wallets buyers use to pay your store."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Open payment settings">
+    Choose the store, then go to Payments → Payment setup.
+  </Step>
+  <Step title="Configure a method">
+    Select a provider and enter the credentials, account details, or destination requested by the setup screen.
+  </Step>
+  <Step title="Set method-specific rules">
+    Review discounts, extra charges, and minimum amounts before enabling the method.
+  </Step>
+  <Step title="Save and test">
+    Check a product checkout in a separate browser session. Confirm the correct account receives the payment and the order reaches the expected state.
+  </Step>
+</Steps>
+
+## Which method to use
+
+Cards: Stripe, Square, Shopify, NMI, Authorize.net, Mollie, SumUp, Pandabase, Paddle, Lemon Squeezy, Whop and Card to crypto. Wallets and alternatives: PayPal, PayPal Friends & Family, Cash App, Venmo, Skinloop, OVGC and Customer balance. Crypto: Bitcoin, Litecoin and Ethereum to your own wallets, or NOWPayments, Heleket, Cryptomus and Coinbase.
+
+Each method has its own guide in this section with the exact keys to copy and where to find them.
+
+## Only enabled methods are shown
+
+Checkout combines store settings with product and variant restrictions. Enabling a method at the store level does not guarantee it is available for every product.
+
+## Keep credentials private
+
+API secrets belong in the payment settings or your own backend. Do not paste provider secrets into product descriptions, custom pages, or an embed button.
+
+## Different methods confirm differently
+
+Card and PayPal providers report payment results through their integrations. Crypto orders may wait for blockchain confirmation. Cash App and Venmo require the configured receipt-verification flow.
+
+## If something does not work
+
+<Note title="What to check">
+  If a method is missing, inspect its enabled state, required fields, product restrictions, and minimum order amount. If an order stays unpaid, inspect the provider’s actual transaction status rather than the browser return page.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Connect Stripe" href="https://docs.paysum.io/stripe" icon="CreditCard">
+    Configure card payments using the Stripe settings supported by your store.
+  </Card>
+  <Card title="Connect Square" href="https://docs.paysum.io/square" icon="CreditCard">
+    Accept cards, Apple Pay, Google Pay and Cash App Pay on a Square payment link.
+  </Card>
+  <Card title="Connect PayPal" href="https://docs.paysum.io/paypal" icon="CreditCard">
+    Set up PayPal and distinguish standard checkout from Friends & Family settings.
+  </Card>
+  <Card title="Crypto payments and wallets" href="https://docs.paysum.io/crypto-payments" icon="Wallet">
+    Understand wallet balances, blockchain confirmation, and crypto withdrawals.
+  </Card>
+</CardGroup>

@@ -1,0 +1,40 @@
+---
+title: "Products"
+description: "Digital products, variants, stock and automated delivery."
+---
+
+<p>
+	Products are what customers buy. Paysum focuses on digital goods that can be delivered
+	automatically after payment.
+</p>
+
+## Delivery types
+
+<Tabs items={['License keys', 'Files', 'Discord roles']}>
+	<Tab>
+		<p>Upload a list of keys as stock. Each order reserves and delivers the next available key.</p>
+	</Tab>
+	<Tab>
+		<p>
+			Attach a file that the customer can download from their delivery page once the payment clears.
+		</p>
+	</Tab>
+	<Tab>
+		<p>Connect your Discord server and grant a role to the buyer automatically.</p>
+	</Tab>
+</Tabs>
+
+## Variants and stock
+
+<p>
+	Products can have variants (for example durations or tiers), each with its own price and stock. When
+	you create a checkout session with <code>product_ids</code>, stock is checked up front and the
+	request fails with <code>insufficient_stock</code> if there isn’t enough.
+</p>
+
+## Organising your catalogue
+
+<p>
+	Group products into categories, sell them together as bundles, and run promotions with coupons and
+	gift cards.
+</p>

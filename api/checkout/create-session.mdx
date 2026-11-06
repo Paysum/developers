@@ -1,0 +1,53 @@
+---
+title: "Create session"
+description: "Creates a hosted checkout session and returns the URL to redirect your customer to. Pass either `line_items` (custom priced items) or `product_ids` (products from your store, delivered automatically) - not both."
+---
+
+`POST /api/checkout-api/sessions`
+
+Creates a hosted checkout session and returns the URL to redirect your customer to. Pass either `line_items` (custom priced items) or `product_ids` (products from your store, delivered automatically) - not both.
+
+Permission: `checkout_api`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `line_items` | body | object[] | no | Custom items with their own name and price. Required unless `product_ids` is set. |
+| `product_ids` | body | object[] | no | Products from your store. Stock is checked and delivery is handled for you. Required unless `line_items` is set. |
+| `customer_email` | body | string | no | Prefills the email field at checkout. |
+| `customer_name` | body | string | no | Prefills the customer name. |
+| `success_url` | body | string | no | Where the customer lands after paying. |
+| `cancel_url` | body | string | no | Where the customer lands if they abandon checkout. |
+| `expired_url` | body | string | no | Where the customer is sent if the session has expired. |
+| `webhook_url` | body | string | no | Receives `checkout.session.*` events for this session. |
+| `expires_in_seconds` | body | number | no | Session lifetime in seconds. Takes precedence over `expires_in_hours`. |
+| `expires_in_hours` | body | number | no | Session lifetime in hours. |
+| `metadata` | body | object | no | Key/value pairs echoed back in webhooks. |
+| `client_reference_id` | body | string | no | Your own identifier for this checkout, echoed back in webhooks. |
+| `hide_navbar` | body | boolean | no | Hide the store navbar on the checkout page. |
+| `hide_footer` | body | boolean | no | Hide the store footer on the checkout page. |
+| `disable_coupons` | body | boolean | no | Prevent coupon codes for this session. |
+| `disable_gift_cards` | body | boolean | no | Prevent gift card redemption for this session. |
+
+```json
+{
+  "line_items": [
+    {
+      "name": "Premium License",
+      "price": 29.99,
+      "quantity": 1
+    }
+  ],
+  "customer_email": "jane@example.com",
+  "success_url": "https://example.com/success",
+  "cancel_url": "https://example.com/cancel",
+  "webhook_url": "https://example.com/webhooks/checkout",
+  "expires_in_seconds": 1800,
+  "metadata": {
+    "orderNumber": "ORD-4821"
+  }
+}
+```
+
+<Note title="Note">
+Keys with no permissions at all are accepted by the Checkout API for backwards compatibility.
+</Note>

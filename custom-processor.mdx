@@ -1,0 +1,62 @@
+---
+title: "Connect any processor"
+description: "Use a processor Paysum doesn’t list by describing its checkout and status API."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Check what the processor offers">
+    You need two API endpoints: one that creates a hosted checkout and returns its URL and an ID, and one that returns that checkout’s status. Most card, crypto and local-payment processors have both.
+  </Step>
+  <Step title="Describe the checkout request">
+    In Payments → Payment setup → Custom processor, enter the create URL, the request body and the headers. Put the API key in the API key field and write &#123;&#123;api_key&#125;&#125; where it goes, for example Authorization: Bearer &#123;&#123;api_key&#125;&#125;. Then say where the response puts the checkout URL and the ID, like data.url and data.id.
+  </Step>
+  <Step title="Describe the status check">
+    Enter the status URL with &#123;&#123;ref&#125;&#125; where the ID goes, the field that holds the status, and which values mean paid and failed. Add the amount and currency fields so an order only confirms when the full total was paid.
+  </Step>
+  <Step title="Connect and test">
+    Select Connect. Paysum checks the status URL with a made-up ID, so a wrong key is caught now. Place a test order with the processor’s sandbox before switching to live keys.
+  </Step>
+</Steps>
+
+## Placeholders
+
+The request body is JSON, sent as JSON or as a form. A value that is exactly one placeholder keeps its type, so "&#123;&#123;amount&#125;&#125;" becomes the number 10.5 while "Order &#123;&#123;order_id&#125;&#125;" stays text.
+
+Available: order_id, store_id, amount (10.5), amount_string ("10.50"), amount_minor (1050), currency (USD), currency_lower, description, email, return_url, cancel_url, webhook_url, store_name, api_key and api_key_base64. The status URL can also use ref.
+
+## Example: BTCPay Server
+
+Create URL https://your-btcpay/api/v1/stores/STORE_ID/invoices with header Authorization: token &#123;&#123;api_key&#125;&#125; and body &#123;"amount": "&#123;&#123;amount_string&#125;&#125;", "currency": "&#123;&#123;currency&#125;&#125;", "metadata": &#123;"orderId": "&#123;&#123;order_id&#125;&#125;"&#125;, "checkout": &#123;"redirectURL": "&#123;&#123;return_url&#125;&#125;"&#125;&#125;. Checkout URL field checkoutLink, reference field id.
+
+Status URL https://your-btcpay/api/v1/stores/STORE_ID/invoices/&#123;&#123;ref&#125;&#125;, paid when status is Settled, failed when Expired or Invalid, amount field amount, currency field currency. The key needs only the create-invoice and view-invoices permissions for that store.
+
+## Using your own server
+
+Left at their defaults, the fields describe a small contract. Paysum POSTs &#123;order_id, amount, currency, description, email, return_url, cancel_url, webhook_url, store_name&#125; to your create URL and expects &#123;id, url&#125; back, then GETs your status URL and expects &#123;status: "paid", amount, currency&#125;.
+
+## How orders confirm
+
+Orders confirm only from the status URL. A webhook is optional: when it carries a valid HMAC-SHA256 or SHA512 signature of the raw body, Paysum re-checks that payment straight away instead of on its next poll.
+
+Endpoints must be public https URLs. Redirects, private networks and secrets in the URL are refused, and changing an endpoint or header means entering the API key again.
+
+## If something does not work
+
+<Note title="What to check">
+  If connecting fails with a 401 or 403, the headers or key are wrong. If checkout fails, compare the request body with the processor’s API reference and check the checkout URL and reference fields against a real response. If orders stay pending, check the status field and the paid values, which must be final states such as paid or settled.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Payment methods" href="https://docs.paysum.io/payments" icon="CreditCard">
+    Connect the accounts and wallets buyers use to pay your store.
+  </Card>
+  <Card title="Orders and invoices" href="https://docs.paysum.io/orders" icon="FileText">
+    Find a transaction, inspect its status, and troubleshoot payment or delivery.
+  </Card>
+</CardGroup>

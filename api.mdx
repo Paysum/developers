@@ -1,0 +1,61 @@
+---
+title: "Overview"
+description: "Explore supported endpoints, examples, errors, and the OpenAPI specification."
+---
+
+The Paysum API is a JSON-over-HTTPS REST API. Requests and responses use `application/json`, timestamps are ISO 8601 strings in UTC, and amounts are plain numbers in the store’s currency.
+
+## Store API
+
+Manage the store a key belongs to. Each resource has its own read and write scope, and the same operations are available to AI assistants through the [MCP server](https://docs.paysum.io/mcp).
+
+<CardGroup cols={2}>
+  <Card title="Products" href="https://docs.paysum.io/api/products/list-products" icon="Package">Catalog, prices, stock and categories.</Card>
+  <Card title="Orders" href="https://docs.paysum.io/api/orders/list-orders" icon="Receipt">Paid orders with line items and deliveries.</Card>
+  <Card title="Customers" href="https://docs.paysum.io/api/customers/list-customers" icon="Users">Buyers, spend and order counts.</Card>
+  <Card title="Coupons" href="https://docs.paysum.io/api/coupons/list-coupons" icon="Ticket">Create and schedule discount codes.</Card>
+  <Card title="Theme" href="https://docs.paysum.io/api/theme/list-files" icon="Palette">Edit theme code, preview and publish.</Card>
+  <Card title="Store" href="https://docs.paysum.io/api/store/get-store" icon="Store">Name, address, currency and the key’s scopes.</Card>
+</CardGroup>
+
+## Payments API
+
+Take payments in your own product and move money out of the store.
+
+<CardGroup cols={2}>
+  <Card title="Checkout sessions" href="https://docs.paysum.io/api/checkout/create-session" icon="CreditCard">Create, retrieve, list and cancel hosted checkouts.</Card>
+  <Card title="Withdrawals" href="https://docs.paysum.io/api/withdrawals/list-wallets" icon="Wallet">Inspect wallets and create or track crypto payouts.</Card>
+  <Card title="Customer balance" href="https://docs.paysum.io/api/customer-balance/list-customers" icon="Users">Find customers and manage store balances.</Card>
+</CardGroup>
+
+## OpenAPI specification
+
+[Download the OpenAPI 3.1 specification](/openapi.json) to import the supported endpoints into your API client. It includes request parameters, permission requirements, and response examples from this reference.
+
+<Note title="Public API and dashboard endpoints">
+  A store API key can only call the endpoints documented here. Requests the dashboard makes in your browser are internal and are not available to keys.
+</Note>
+
+## Base URL
+
+```bash
+https://paysum.io
+```
+
+## Authentication
+
+Send a store API key as a bearer token on every request. See [Authentication](https://docs.paysum.io/authentication) for permissions and key management.
+
+```http
+Authorization: Bearer sk_your_secret_key
+```
+
+## Pagination
+
+List endpoints accept `limit` (1–100, default 20) and `offset` (default 0) and return the total alongside the page:
+
+```json
+{ "data": ["…"], "total": 42, "limit": 20, "offset": 0 }
+```
+
+[List orders](https://docs.paysum.io/api/orders/list-orders) returns `next_offset` instead of a total. Pass it as `offset` until it is `null`.

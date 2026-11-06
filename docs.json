@@ -1,77 +1,262 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "maple",
-  "appearance": {"default": "light"},
-  "name": "Paysum API Documentation",
+  "name": "Paysum",
+  "description": "Guides and API reference for Paysum stores.",
   "colors": {
-    "primary": "#4f46e5",
-    "light": "#6366f1",
-    "dark": "#332f88"
+    "primary": "#2563eb",
+    "light": "#3b82f6",
+    "dark": "#1d4ed8"
   },
   "favicon": "/favicon.png",
   "navigation": {
     "tabs": [
       {
-        "tab": "API Reference",
+        "tab": "Guides",
         "groups": [
           {
-            "group": "API Documentation",
+            "group": "Getting Started",
             "pages": [
-              "api-reference/introduction",
-              "api-reference/authentication",
-              "api-reference/webhooks"
+              "index",
+              "store-quickstart",
+              "plans-and-limits"
+            ]
+          },
+          {
+            "group": "Storefront",
+            "pages": [
+              "stores",
+              "branding",
+              "themes",
+              "custom-domain",
+              "custom-pages",
+              "seo",
+              "legal"
+            ]
+          },
+          {
+            "group": "Products",
+            "pages": [
+              "products",
+              "variants",
+              "delivery",
+              "serials-and-keys",
+              "file-downloads",
+              "bundles-and-categories"
             ]
           },
           {
             "group": "Payments",
             "pages": [
-              "api-reference/payments/create"
+              "payments",
+              "checkout-flow",
+              "stripe",
+              "square",
+              "shopify",
+              "nmi",
+              "authorize-net",
+              "mollie",
+              "sumup",
+              "pandabase",
+              "paddle",
+              "lemonsqueezy",
+              "whop",
+              "custom-processor",
+              "card-to-crypto",
+              "paypal",
+              "cash-app-and-venmo",
+              "skinloop",
+              "ovgc",
+              "customer-balance",
+              "crypto-payments",
+              "nowpayments",
+              "heleket",
+              "cryptomus",
+              "coinbase"
+            ]
+          },
+          {
+            "group": "Store Operations",
+            "pages": [
+              "orders",
+              "customers",
+              "reviews",
+              "analytics",
+              "fraud-shield"
+            ]
+          },
+          {
+            "group": "Growth",
+            "pages": [
+              "coupons",
+              "gift-cards",
+              "referral-codes",
+              "discord-roles"
+            ]
+          },
+          {
+            "group": "Account and Access",
+            "pages": [
+              "team-and-permissions",
+              "account-security"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Developers",
+        "groups": [
+          {
+            "group": "Get started",
+            "pages": [
+              "developers",
+              "authentication",
+              "quickstart"
+            ]
+          },
+          {
+            "group": "Checkout",
+            "pages": [
+              "hosted-checkout",
+              "embed",
+              "elements"
+            ]
+          },
+          {
+            "group": "Events",
+            "pages": [
+              "webhooks"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Introduction",
+            "pages": [
+              "api",
+              "api/errors",
+              "api/rate-limits"
+            ]
+          },
+          {
+            "group": "Store API",
+            "pages": [
+              "api/store/get-store",
+              "api/products/list-products",
+              "api/products/get-product",
+              "api/products/create-product",
+              "api/products/update-product",
+              "api/products/delete-product",
+              "api/products/list-categories",
+              "api/orders/list-orders",
+              "api/orders/get-order",
+              "api/customers/list-customers",
+              "api/customers/get-customer",
+              "api/coupons/list-coupons",
+              "api/coupons/get-coupon",
+              "api/coupons/create-coupon",
+              "api/coupons/update-coupon",
+              "api/coupons/delete-coupon",
+              "api/theme/list-files",
+              "api/theme/get-file",
+              "api/theme/write-files",
+              "api/theme/preview",
+              "api/theme/publish",
+              "api/theme/list-versions"
+            ]
+          },
+          {
+            "group": "Payments API",
+            "pages": [
+              "api/checkout/create-session",
+              "api/checkout/list-sessions",
+              "api/checkout/get-session",
+              "api/checkout/cancel-session",
+              "api/withdrawals/list-wallets",
+              "api/withdrawals/create-withdrawal",
+              "api/withdrawals/list-withdrawals",
+              "api/withdrawals/get-withdrawal",
+              "api/customer-balance/list-customers",
+              "api/customer-balance/get-customer",
+              "api/customer-balance/add-balance",
+              "api/customer-balance/deduct-balance",
+              "api/customer-balance/list-transactions"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "CLI",
+        "groups": [
+          {
+            "group": "Get started",
+            "pages": [
+              "cli",
+              "cli/install"
+            ]
+          },
+          {
+            "group": "Workflow",
+            "pages": [
+              "cli/develop",
+              "cli/sync",
+              "cli/ci"
+            ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "cli/commands"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "MCP",
+        "groups": [
+          {
+            "group": "Get started",
+            "pages": [
+              "mcp",
+              "mcp/clients"
+            ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "mcp/tools",
+              "mcp/security"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Resources",
+        "groups": [
+          {
+            "group": "Help",
+            "pages": [
+              "faq",
+              "support"
             ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Help Center",
-          "href": "https://help.paysum.io",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Discord Server",
-          "href": "https://discord.gg/paysum",
-          "icon": "discord"
-        },
-        {
-          "anchor": "Telegram Channel",
-          "href": "https://t.me/paysumupdates",
-          "icon": "telegram"
-        }
-      ]
-    }
-  },
-  "logo": {
-    "light": "https://paysum.io/opengraph.png",
-    "dark": "https://merchant-assets-storefront.paysum.dev/paysum-white-logo.png"
+    ]
   },
   "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "https://help.paysum.io"
-      }
-    ],
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://paysum.io/login"
+      "href": "https://paysum.io/auth/login"
     }
   },
   "footer": {
     "socials": {
       "discord": "https://discord.gg/paysum",
-      "telegram": "https://t.me/paysumupdates",
       "github": "https://github.com/Paysum/developers"
     }
   }

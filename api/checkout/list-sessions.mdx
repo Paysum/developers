@@ -1,0 +1,16 @@
+---
+title: "List sessions"
+description: "Returns checkout sessions for the store, newest first."
+---
+
+`GET /api/checkout-api/sessions`
+
+Returns checkout sessions for the store, newest first.
+
+Permission: `checkout_api`
+
+| Name | In | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `limit` | query | integer | no | Number of results to return, between 1 and 100. |
+| `offset` | query | integer | no | Number of results to skip. |
+| `status` | query | string | no | Filter by status: `pending`, `completed`, `cancelled` or `expired`. |

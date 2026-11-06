@@ -1,0 +1,47 @@
+---
+title: "Connect Paddle"
+description: "Sell through Paddle as merchant of record, so it handles tax and chargebacks."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Create an API key">
+    In Paddle, open Developer tools → Authentication and create an API key with Transactions read and write. Sandbox keys start with pdl_sdbx_, live keys with pdl_live_.
+  </Step>
+  <Step title="Create a client-side token">
+    On the same page, create a client-side token. It opens Paddle checkout in the buyer’s browser and is safe to share.
+  </Step>
+  <Step title="Approve the checkout domain">
+    Paddle checkout opens on our payment page, so its domain must be approved. In Paddle, open Checkout → Website approval and add the domain shown in the webhook URL in the Connect dialog.
+  </Step>
+  <Step title="Add a webhook (optional)">
+    Open Developer tools → Notifications, add the webhook URL from the Connect dialog and subscribe to transaction.paid and transaction.completed. Copy the secret key it shows.
+  </Step>
+  <Step title="Connect in the dashboard">
+    Open Payments → Payment setup → Paddle, paste the API key, client-side token and optional webhook secret, choose the environment and select Connect.
+  </Step>
+</Steps>
+
+## Tax and totals
+
+Paddle adds sales tax or VAT according to your Paddle tax settings. An order confirms once Paddle reports the transaction as paid and the total covers the order amount.
+
+## If something does not work
+
+<Note title="What to check">
+  If checkout doesn’t open, the payment page’s domain isn’t approved yet, or the client-side token belongs to the other environment. If orders stay pending, check that the API key can read transactions.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Payment methods" href="https://docs.paysum.io/payments" icon="CreditCard">
+    Connect the accounts and wallets buyers use to pay your store.
+  </Card>
+  <Card title="Orders and invoices" href="https://docs.paysum.io/orders" icon="FileText">
+    Find a transaction, inspect its status, and troubleshoot payment or delivery.
+  </Card>
+</CardGroup>

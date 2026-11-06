@@ -1,0 +1,46 @@
+---
+title: "Connect Whop"
+description: "Take cards, wallets, crypto and pay later on Whop’s hosted checkout."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Create an API key">
+    In Whop, open Dashboard → Developer and create an Account API key. Give it the checkout_configuration:create and payment:basic:read permissions.
+  </Step>
+  <Step title="Copy your account ID">
+    Open Dashboard → Settings and copy the account ID that starts with biz_. To file every checkout under one product, also copy that product’s prod_ ID.
+  </Step>
+  <Step title="Add the webhook">
+    Optional but faster: in Dashboard → Developer, create a webhook with the URL from the Connect dialog and the payment events, then copy its ws_ secret.
+  </Step>
+  <Step title="Connect in the dashboard">
+    Open Payments → Payment setup → Whop, paste the API key, account ID and webhook secret, and select Connect. Choose Sandbox with keys from sandbox.whop.com to test with card 4242 4242 4242 4242.
+  </Step>
+</Steps>
+
+## How orders confirm
+
+Each order opens a one-time Whop checkout at the order total, in your store currency. Paysum confirms the order from Whop’s record of the payment, so it confirms even without the webhook; the webhook only makes it instant.
+
+An order counts as paid only when Whop reports the payment as paid, for this order, for at least the order total. Refunded payments never confirm an order.
+
+## If something does not work
+
+<Note title="What to check">
+  If checkout fails, check the API key’s permissions and that it belongs to the account ID you entered. Whop needs approval for checkouts over $2,500. If orders stay pending, check that the key can read payments.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Payment methods" href="https://docs.paysum.io/payments" icon="CreditCard">
+    Connect the accounts and wallets buyers use to pay your store.
+  </Card>
+  <Card title="Orders and invoices" href="https://docs.paysum.io/orders" icon="FileText">
+    Find a transaction, inspect its status, and troubleshoot payment or delivery.
+  </Card>
+</CardGroup>

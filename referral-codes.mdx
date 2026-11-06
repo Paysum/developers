@@ -1,0 +1,61 @@
+---
+title: "Referral codes and affiliates"
+description: "Give partners a link that credits them for the sales they send, with a commission paid in store credit."
+---
+
+## Set it up
+
+<Steps>
+  <Step title="Open Referral codes">
+    Go to Marketing → Referral codes and select New referral code.
+  </Step>
+  <Step title="Create the code">
+    Enter a code, the affiliate’s email and their commission as a percentage of each order. Leave the email empty to only count how many orders a code brings in.
+  </Step>
+  <Step title="Share the link">
+    Copy the link from the code’s row. It is your store address with ?ref=CODE. A buyer who opens it is credited to that code for any order they place later from the same browser.
+  </Step>
+  <Step title="Watch it pay out">
+    When an order placed through the link is paid, the commission is added to the affiliate’s store credit and shown under Earned. They spend it at checkout like any store balance.
+  </Step>
+</Steps>
+
+## How commission is worked out
+
+Commission is the code’s percentage of the order total the buyer paid, rounded to the cent. It is credited once per order, even if the order is processed again.
+
+An affiliate never earns on their own orders: if the buyer’s email is the affiliate’s email, no commission is recorded.
+
+## Refunds and chargebacks
+
+When a payment provider reports a full refund, the commission for that order is taken back from the affiliate’s store credit. If they have already spent part of it, only what is left is taken back.
+
+## Which link wins
+
+The most recent ?ref= link a buyer opened is the one that counts. Codes that are deactivated, expired or past their maximum uses are ignored at checkout.
+
+## Embeds and API checkout
+
+Referral links are read on your storefront. Checkouts started from the embed, Checkout Elements or the Checkout API run outside it, so a ?ref= visit usually isn’t carried over and those orders aren’t credited.
+
+## If something does not work
+
+<Note title="What to check">
+  If an order wasn’t credited, check that the buyer opened the ?ref= link in the same browser they paid from, that the code is active, and that an affiliate email and commission are set on it.
+</Note>
+
+Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Coupons and discounts" href="https://docs.paysum.io/coupons" icon="CreditCard">
+    Create discount codes and verify how they change checkout totals.
+  </Card>
+  <Card title="Read your analytics" href="https://docs.paysum.io/analytics" icon="Gauge">
+    Use revenue, orders, and product performance to understand your store.
+  </Card>
+  <Card title="Checkout embed" href="https://docs.paysum.io/embed" icon="Code2">
+    Try an interactive checkout, copy the integration, and choose your language.
+  </Card>
+</CardGroup>
