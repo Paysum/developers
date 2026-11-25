@@ -10,6 +10,10 @@
   },
   "logo": "/logo/paysum.svg",
   "favicon": "/logo/favicon.png",
+  "contextual": {
+    "display": "header",
+    "options": ["copy", "view", "claude", "chatgpt", "perplexity", "grok", "aistudio", "devin", "windsurf"]
+  },
   "navigation": {
     "tabs": [
       {

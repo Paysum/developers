@@ -1,0 +1,9 @@
+.sidebar-group > li > a > div:first-child:has(> img[aria-hidden="true"]) {
+  height: max(20px, 1lh);
+}
+
+.sidebar-group > li > a > div:first-child > img[aria-hidden="true"] {
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
