@@ -1,0 +1,33 @@
+---
+title: "MCP tools"
+description: "Find each Paysum MCP tool, its scope, and its Store API inputs."
+---
+
+Each tool uses the inputs and limits from its [Store API](/api) endpoint. `tools/list` returns only tools the key has permission to call.
+
+| Tool | Scope |
+| --- | --- |
+| [`get_store`](/api/store/get-store) | `store:read` |
+| [`list_products`](/api/products/list-products) | `products:read` |
+| [`get_product`](/api/products/get-product) | `products:read` |
+| [`create_product`](/api/products/create-product) | `products:write` |
+| [`update_product`](/api/products/update-product) | `products:write` |
+| [`delete_product`](/api/products/delete-product) | `products:write` |
+| [`list_categories`](/api/products/list-categories) | `products:read` |
+| [`list_orders`](/api/orders/list-orders) | `orders:read` |
+| [`get_order`](/api/orders/get-order) | `orders:read` |
+| [`list_customers`](/api/customers/list-customers) | `customers:read` |
+| [`get_customer`](/api/customers/get-customer) | `customers:read` |
+| [`list_coupons`](/api/coupons/list-coupons) | `coupons:read` |
+| [`get_coupon`](/api/coupons/get-coupon) | `coupons:read` |
+| [`create_coupon`](/api/coupons/create-coupon) | `coupons:write` |
+| [`update_coupon`](/api/coupons/update-coupon) | `coupons:write` |
+| [`delete_coupon`](/api/coupons/delete-coupon) | `coupons:write` |
+| [`list_theme_files`](/api/theme/list-files) | `themes:read` |
+| [`get_theme_file`](/api/theme/get-file) | `themes:read` |
+| [`write_theme_files`](/api/theme/write-files) | `themes:write` |
+| [`preview_theme`](/api/theme/preview) | `themes:write` |
+| [`publish_theme`](/api/theme/publish) | `themes:write` |
+| [`list_theme_versions`](/api/theme/list-versions) | `themes:read` |
+
+A failed tool call can return `isError: true` with an error such as `permission_denied`. Review the operation and the key's scope before you grant more access. Keep approval on for destructive operations. See [Security](/mcp/security).

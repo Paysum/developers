@@ -1,24 +1,42 @@
 ---
 title: "Read your analytics"
-description: "Use revenue, orders, and product performance to understand your store."
+description: "See revenue, orders, storefront traffic, and campaign attribution."
 ---
 
 ## Set it up
 
 <Steps>
   <Step title="Choose the store and period">
-    Open Core → Analytics and select the date range you want to inspect.
+    Open **Dashboard** → **Analytics**, then select the store and date range.
   </Step>
   <Step title="Read the overview">
-    Compare revenue and order counts for the same range. Check the currency and whether you are looking at completed payments.
+    Review **Revenue**, **Orders**, **Customers**, and **Avg. order value** for the same range. Use **Visitors** and **Views** for storefront traffic. **Overview** shows a short summary and your setup checklist.
   </Step>
-  <Step title="Inspect products">
-    Use product performance alongside the order list to understand what was sold.
+  <Step title="Inspect sales and traffic">
+    Compare sales by product, payment method, or customer. Compare traffic by country, device, or browser.
   </Step>
   <Step title="Investigate an unexpected number">
     Find the underlying orders and compare their timestamps and payment status before assuming a chart is wrong.
   </Step>
 </Steps>
+
+## Read the conversion rate
+
+In **Overview**, **Conversion rate** is the percentage of tracked storefront visitors who placed a paid order in the selected period. Orders that Paysum cannot match to a tracked visit do not count toward this rate. A dash means Paysum does not have enough data to calculate the rate.
+
+## Track campaigns
+
+Add UTM parameters to the storefront links you share. For example:
+
+```text
+https://your-store.mypaysum.io/?utm_source=discord&utm_medium=social&utm_campaign=launch
+```
+
+Use the **UTM source** breakdown in **Analytics** to compare storefront traffic by source. The **Campaign** section on the order page shows the campaign for attributed orders.
+
+## Connect external tools
+
+Open **Integrations** → **App store** to set up Google Analytics, Google Tag Manager, Meta Pixel, Hotjar, or Microsoft Clarity. This is separate from the metrics in **Analytics**.
 
 ## Use comparable ranges
 

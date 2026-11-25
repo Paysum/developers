@@ -1,0 +1,238 @@
+---
+title: "Liquid theme reference"
+description: "The files, objects, filters and tags a Paysum storefront theme can use."
+---
+
+Paysum storefronts are Liquid themes. Paysum renders them on its storefront servers with your store's products and settings. A theme is a folder of plain files: no build step and no package install.
+
+## Folder layout
+
+```
+my-theme/
+├── config/theme.json      Manifest: name, accent, font, sections, text defaults
+├── layout/theme.liquid    The page frame around every page
+├── templates/             index, product, page, account
+├── sections/              Blocks of the home page and of other pages
+├── snippets/              Small reusable parts
+└── assets/                CSS, fonts, images
+```
+
+Only files in these six folders belong to the theme. Text files can be `.liquid`, `.css`, `.json`, `.js`, `.svg` or `.html`.
+
+## The manifest
+
+`config/theme.json` describes the theme:
+
+```json
+{
+  "slug": "prism",
+  "name": "Prism",
+  "accent": "#ff4fd8",
+  "font": "Geist",
+  "sections": ["hero", "featured", "products", "how-it-works", "faq"],
+  "homeClass": "pr-home",
+  "stylesheets": ["theme.css"],
+  "preload": ["fonts/Geist.woff2"],
+  "defaults": {
+    "heroTitle": "Unleash Your Potential",
+    "ctaText": "Browse products!",
+    "purchaseLabel": "Purchase"
+  }
+}
+```
+
+| Key | Meaning |
+| --- | --- |
+| `slug` | The theme ID. It must match the folder name. |
+| `name` | The name in the theme gallery. |
+| `accent`, `font` | Defaults until the merchant sets their own colors and font. |
+| `sections` | The home page sections, in order. Each one needs a file in `sections/`. Merchants reorder and hide them in the visual builder. |
+| `homeClass` | A CSS class for the home page wrapper, available as `page.home_class`. |
+| `stylesheets` | CSS files in `assets/` to load on every page. |
+| `preload` | Assets in `assets/` to preload, such as fonts. |
+| `defaults` | Text the theme shows. Merchants can edit each value in the visual builder. Read them through `copy`. |
+
+## Templates
+
+Paysum picks a template from the page address:
+
+| Address | Template | `page.view` |
+| --- | --- | --- |
+| `/` | `index` | `home` |
+| `/products/<slug>` | `product` | `product` |
+| `/products`, `/features`, `/faq`, `/reviews` | `page` | `products`, `features`, `faq`, `reviews` |
+| `/categories/<slug>` | `page` | `category` |
+| `/page/<slug>` | `page` | `custom-page` |
+| `/terms`, `/privacy`, `/refund` | `page` | `terms`, `privacy`, `refund` |
+| `/account` | `account` | `account` |
+| Anything else | `page` | `not-found` |
+
+Checkout, the order page and the status page are Paysum pages. Themes do not render them.
+
+`layout/theme.liquid` wraps every template. Print the template's output with `content_for_layout`:
+
+```liquid
+{%- if settings.header_enabled -%}{%- section 'header' -%}{%- endif -%}
+<main>{{ content_for_layout }}</main>
+{%- if settings.footer_enabled -%}{%- section 'footer' -%}{%- endif -%}
+{{ platform.attribution }}
+```
+
+A typical `templates/index.liquid` renders the sections in the merchant's order:
+
+```liquid
+<div class="{{ page.home_class }}">
+  {%- for id in page.sections -%}
+    {%- section id -%}
+  {%- endfor -%}
+</div>
+```
+
+## Tags
+
+Paysum supports the standard Liquid tags (`if`, `unless`, `case`, `for`, `assign`, `capture`, `comment`, `raw`) and these:
+
+| Tag | What it does |
+| --- | --- |
+| `{% section 'name' %}` | Renders `sections/name.liquid`. The name can be a variable. |
+| `{% render 'name', key: value %}` | Renders `snippets/name.liquid` with the given variables. |
+| `{% schema %}…{% endschema %}` | Documents a section's editor settings. It never renders. |
+
+`include` is not available. Use `render`.
+
+## Global objects
+
+These objects are available in every file.
+
+### shop
+
+| Field | Value |
+| --- | --- |
+| `shop.id`, `shop.slug`, `shop.name`, `shop.description` | The store |
+| `shop.logo`, `shop.favicon`, `shop.banner` | Image URLs |
+| `shop.currency` | The currency code, for example `USD` |
+| `shop.announcement`, `shop.announcement_icon`, `shop.announcement_color`, `shop.announcement_size` | The announcement bar |
+| `shop.discord_url` | The Discord invite |
+| `shop.socials` | Social links |
+| `shop.policies` | Policy texts |
+| `shop.pages`, `shop.nav_pages`, `shop.footer_pages` | Custom pages. Each has `title`, `slug`, `href` and `show_in_navbar`. |
+| `shop.categories` | Product categories |
+| `shop.stats.total_sold`, `shop.stats.average_rating`, `shop.stats.total_reviews` | Store statistics |
+
+### products
+
+`products` is the catalog in order. Sold-out products are left out when the merchant turned on **Hide sold out**. On a category page, `products` holds that category's products.
+
+`featured_products` holds the featured products. `spotlight_products` holds the featured products, or the first product when none are featured, up to six. Use it for carousels.
+
+### product
+
+| Field | Value |
+| --- | --- |
+| `product.id`, `product.title`, `product.slug` | The product |
+| `product.href` | The product page address. Always link with this. |
+| `product.image` | The main image URL, or generated art when there is none |
+| `product.price`, `product.price_formatted` | The lowest price, and the same price with currency, for example `$49.00` |
+| `product.from_price` | `true` when variants have different prices. Show "From" or "Starting at". |
+| `product.sold_out` | `true` when nothing can be bought |
+| `product.stock_count` | Stock left. Only set when stock is limited. |
+| `product.category_name` | The category |
+| `product.description` | The description as HTML |
+| `product.excerpt` | The description as plain text, up to 160 characters |
+| `product.is_featured` | Featured by the merchant |
+| `product.status.text`, `product.status.color` | The product's status from the status page, when set |
+| `product.variants` | Variants. Each has `id`, `name`, `description`, `price`, `price_formatted`, `sold_out`, and `stock` when limited. |
+| `product.hide_variant_stock`, `product.show_default_variant` | Product display options |
+
+### settings
+
+The merchant's design settings:
+
+| Field | Value |
+| --- | --- |
+| `settings.accent`, `settings.accent_secondary`, `settings.accent_ink` | Brand colors. `accent_ink` is a readable text color on the accent. |
+| `settings.custom_font`, `settings.custom_font_href`, `settings.font_scale` | The font and text size |
+| `settings.background_image`, `settings.background_tint`, `settings.background_tint_opacity`, `settings.particles` | Background options |
+| `settings.header_enabled`, `settings.footer_enabled` | Header and footer switches |
+| `settings.hero_title`, `settings.hero_subtitle`, `settings.cta_text`, `settings.banner` | Hero content |
+| `settings.status_message` | The store status message |
+| `settings.currency` | The currency code |
+| `settings.hide_sold_out`, `settings.hide_stock`, `settings.show_products_sold`, `settings.show_purchase_stats` | Storefront switches from **Customization** |
+
+### content and copy
+
+- `content` holds what merchants edit in the visual builder, for example `content.products_title`, `content.features_title`, `content.faq_title`, the `content.features` list and the `content.faqs` list.
+- `copy` holds the text from your manifest's `defaults`, with the merchant's edits applied, for example `copy.purchaseLabel`.
+
+### Other objects
+
+| Object | Value |
+| --- | --- |
+| `page` | Data for the current page. Always has `page.view` and `page.title`. |
+| `theme.slug`, `theme.name`, `theme.asset_base`, `theme.sections` | The theme |
+| `request.path` | The current path |
+| `request.preview` | `true` in a theme preview |
+| `platform.attribution` | Paysum's attribution. Print it in the layout. |
+
+### The product page
+
+On `/products/<slug>`, `page` also has:
+
+| Field | Value |
+| --- | --- |
+| `page.product` | The product |
+| `page.gallery` | All image URLs |
+| `page.selected_variant` | The ID of the variant selected first |
+| `page.price`, `page.price_formatted` | The price of the selected option |
+| `page.stock`, `page.sold_out` | Stock and availability of the selected option |
+| `page.rating`, `page.review_count`, `page.reviews` | Reviews. `page.reviews.items` lists them, each with `rating`, `title`, `comment`, `author`, `verified` and `created_at`. |
+
+## Filters
+
+All standard Liquid filters work, such as `escape`, `default`, `upcase`, `size`, `first`, `newline_to_br` and `date`. Paysum adds or changes these:
+
+| Filter | What it does |
+| --- | --- |
+| `money` | Formats a number as a price in the given currency |
+| `fixed` | Rounds to a number of decimals |
+| `delimited` | Adds thousands separators to a whole number |
+| `cap_count` | Caps a count, for example `99+` |
+| `first_letter` | The first letter, in upper case |
+| `json` | The value as JSON text |
+| `css_url` | The value as a CSS `url("…")`, for inline styles |
+| `cart_json` | The product as cart JSON, for `data-os-add` |
+| `plus`, `minus`, `times` | Arithmetic. Whole numbers stay whole, so results work as loop bounds and indexes. |
+| `divided_by`, `modulo` | Division. Whole numbers round down. Dividing by zero is an error. |
+
+```liquid
+{{ 49 | money: shop.currency }}          → $49.00
+{{ 4.666 | fixed: 1 }}                   → 4.7
+{{ 12345 | delimited }}                  → 12,345
+{{ 150 | cap_count: 99 }}                → 99+
+{{ shop.name | first_letter }}           → N
+{{ shop.banner | css_url }}              → url("https://…")
+{{ product | cart_json | escape }}       → {"id":"…","name":"…","price":49,…}
+{{ 7 | divided_by: 2 }}                  → 3
+```
+
+## Output is escaped
+
+Output is HTML-escaped by default. To print trusted HTML, such as `product.description`, add `| safe`. Never mark buyer or merchant text as safe unless Paysum already gives it to you as HTML.
+
+## Let merchants edit text in place
+
+Add `data-editable` to an element to make its text editable in the visual builder:
+
+| Value | Edits |
+| --- | --- |
+| `data-editable="hero_title"` | A settings field such as `hero_title`, `hero_subtitle` or `cta_text` |
+| `data-editable="copy:purchaseLabel"` | A `copy` value from your manifest |
+| `data-editable="list:faqs:<id>:question"` | A field of one item in a content list |
+
+Add `data-section="<id>"` to each section's root element so the builder can select, hide and reorder it.
+
+## Next steps
+
+- [Storefront runtime](/storefront-runtime)
+- [Theme CLI](/cli)
+- [Theme API](/api/theme/list-files)

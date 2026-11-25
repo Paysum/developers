@@ -1,0 +1,32 @@
+---
+title: "SDKs and libraries"
+description: "Every script, API and tool for building on Paysum, and when to use each."
+---
+
+| Tool | Use it to | Runs |
+| --- | --- | --- |
+| [Checkout embed](https://docs.paysum.io/embed) (`embed.js`) | Open Paysum checkout in a modal from a button on any website | In the buyer's browser |
+| [Checkout Elements](https://docs.paysum.io/elements) (`elements.js`) | Build checkout into your own page: cart, email, payment methods and pay button as separate pieces | In the buyer's browser |
+| [Storefront runtime](https://docs.paysum.io/storefront-runtime) | Add the cart, product page, search and sign-in to a Liquid theme with `data-os-*` attributes | On Paysum storefronts, loaded for you |
+| [Liquid themes](https://docs.paysum.io/liquid-themes) | Design your whole storefront | On Paysum's servers |
+| [Store API](https://docs.paysum.io/api) | Manage store resources within the key's permissions | On your server |
+| [OAuth apps](/oauth-apps) | Let other sellers approve access to their store | On your server |
+| [Hosted checkout](https://docs.paysum.io/hosted-checkout) | Create a checkout session on your server and send the buyer to it | On your server |
+| [Webhooks](https://docs.paysum.io/webhooks) | Get signed checkout and withdrawal events | On your server |
+| [Dynamic delivery](https://docs.paysum.io/dynamic-delivery) | Deliver each order from your own server | On your server |
+| [MCP server](https://docs.paysum.io/mcp) | Let an AI assistant manage your store | In your AI client |
+| [Theme CLI](https://docs.paysum.io/cli) | Edit theme files locally with a live preview | On your machine |
+
+Try the checkout embed live at [checkout.paysum.io/demo](https://checkout.paysum.io/demo). Every button there opens a demo checkout, and nothing is charged.
+
+## Which one do I need?
+
+- **I have my own website and want a Buy button.** Use the [checkout embed](https://docs.paysum.io/embed). Load one script and set the product and store on each button.
+- **I want checkout inside my page, styled like my site.** Use [Checkout Elements](https://docs.paysum.io/elements).
+- **I want my Paysum store to look different.** Start with the [visual builder](https://docs.paysum.io/themes). For full control, edit the [Liquid theme](https://docs.paysum.io/liquid-themes).
+- **I run a server and want to sell or sync data.** Use the [Store API](https://docs.paysum.io/api) with an [API key](https://docs.paysum.io/authentication).
+- **My product is made per order.** Use [dynamic delivery](https://docs.paysum.io/dynamic-delivery).
+
+## Keys and security
+
+Browser scripts (embed, Elements, storefront runtime) never need an API key. Server tools use a store API key. Keep it on your server. See [Authentication](https://docs.paysum.io/authentication).

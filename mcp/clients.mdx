@@ -1,0 +1,63 @@
+---
+title: "Connect an MCP client"
+description: "Set up a Paysum connection in an assistant or other Streamable HTTP client."
+---
+
+Create a separate key under **Integrations** → **API keys**. Start with the read scopes you need. Keep the key out of shared configuration and Git.
+
+## Cursor
+
+Add this to `.cursor/mcp.json` in the project or `~/.cursor/mcp.json` for all projects. Set `PAYSUM_API_KEY` in Cursor's environment.
+
+```json
+{
+  "mcpServers": {
+    "paysum": {
+      "url": "https://paysum.io/api/mcp",
+      "headers": { "Authorization": "Bearer ${env:PAYSUM_API_KEY}" }
+    }
+  }
+}
+```
+
+## Claude Code
+
+```bash
+claude mcp add --transport http paysum https://paysum.io/api/mcp \
+  --header 'Authorization: Bearer ${PAYSUM_API_KEY}'
+```
+
+Set `PAYSUM_API_KEY` in Claude Code's environment and use `/mcp` to check the connection.
+
+## VS Code
+
+Add this to `.vscode/mcp.json`. VS Code prompts for the key when it starts the server.
+
+```json
+{
+  "inputs": [
+    { "type": "promptString", "id": "paysum-key", "description": "Paysum API key", "password": true }
+  ],
+  "servers": {
+    "paysum": {
+      "type": "http",
+      "url": "https://paysum.io/api/mcp",
+      "headers": { "Authorization": "Bearer ${input:paysum-key}" }
+    }
+  }
+}
+```
+
+## Other clients
+
+For a Streamable HTTP client, set the server URL to `https://paysum.io/api/mcp` and add an `Authorization` header with your bearer key. If the client only supports local servers, such as a setup that uses Claude Desktop's local configuration, use a remote bridge that supports custom headers. In Windsurf, use `serverUrl` in the `mcpServers` entry.
+
+Check the key from a terminal:
+
+```bash
+curl https://paysum.io/api/mcp \
+  -H "Authorization: Bearer $PAYSUM_API_KEY" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+```

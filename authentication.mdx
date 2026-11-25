@@ -3,11 +3,13 @@ title: "Authentication"
 description: "How store API keys work, which permissions they carry and how to keep them safe."
 ---
 
-All API requests authenticate with a store API key sent as a bearer token. A key belongs to exactly one store, so the API never needs a store ID in the URL.
+Send a store API key as a bearer token on Store API, checkout, withdrawal, and customer balance requests. Each key belongs to one store. You do not need to put the store ID in these request URLs.
 
 ```http
 Authorization: Bearer sk_your_secret_key
 ```
+
+For your own store, create a key under **Integrations** → **API keys**. If other sellers must connect their stores, use an [OAuth app](/oauth-apps) to obtain an approved store key.
 
 ## Permissions
 

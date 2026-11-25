@@ -1,0 +1,43 @@
+---
+title: "Dynamic delivery"
+description: "Return goods for paid orders from your own server."
+---
+
+Use dynamic delivery to generate a key or other goods for each paid order. Paysum sends a signed request to your server. Paysum saves the items in your response and delivers them to the buyer.
+
+## Set up the product
+
+Open the product. Under **Delivery**, select **Dynamic**. Enter your **Webhook URL**, select **Create**, and save the product.
+
+## Handle the request
+
+Paysum sends a JSON `POST` with `event: "delivery.requested"`. Verify `x-webhook-signature` with your store's secret before you parse the body. See [Verifying signatures](/webhooks#verifying-signatures).
+
+```json
+{
+  "event": "delivery.requested",
+  "test": false,
+  "delivery_id": "8c1f6a52-0d0e-4a3f-9a57-1b7e6f2c9d10",
+  "order_id": "ord_example",
+  "store_id": "00000000-0000-4000-8000-000000000001",
+  "product": { "id": "prod_example", "name": "Lifetime License" },
+  "variant": null,
+  "quantity": 1,
+  "customer": { "email": "buyer@example.com", "discord_id": null },
+  "created_at": "2026-11-21T09:00:00.000Z"
+}
+```
+
+The `Idempotency-Key` header matches `delivery_id`. Use that ID to save the goods in your database and return the same goods on a retry. If `test` is `true`, return sample goods, not real stock.
+
+## Return the goods
+
+Return `2xx` within 15 seconds. Return one item per unit. For example:
+
+```json
+{ "items": ["EXAMPLE-KEY-1", "EXAMPLE-KEY-2"] }
+```
+
+Paysum also accepts an array of strings, `{ "item": "EXAMPLE-KEY" }`, `{ "content": "EXAMPLE-KEY" }`, or a plain text item. The response limit is 64 KB, with up to 100 items and up to 4,000 characters per item. Paysum does not follow redirects.
+
+An invalid, empty, or non-`2xx` response causes **Delivery failed**. Paysum can try again when the delivery is next requested. It stops calling your server for the delivery after it saves a valid response.

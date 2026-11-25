@@ -1,0 +1,20 @@
+---
+title: "Theme CLI"
+description: "Edit storefront themes locally, preview draft changes, and publish from the terminal."
+---
+
+The `paysum` CLI uses the same theme files as the dashboard code editor. Edit files in your own editor and keep them in Git. Draft edits do not change the live storefront.
+
+<Steps>
+  <Step title="Install and sign in">
+    [Install the CLI](/cli/install) and connect a store key.
+  </Step>
+  <Step title="Download and preview">
+    Run `paysum init` to download your theme. Run `paysum watch` to push drafts as you save and reload the preview.
+  </Step>
+  <Step title="Publish">
+    Run `paysum publish` when your preview is ready. Use the version history in the dashboard to roll back.
+  </Step>
+</Steps>
+
+See [Develop a theme](/cli/develop), [CI and automation](/cli/ci), or the [command reference](/cli/commands).

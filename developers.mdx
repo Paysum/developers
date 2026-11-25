@@ -1,11 +1,11 @@
 ---
 title: "Developer platform"
-description: "Every way to build on {brand}: REST API, theme CLI, MCP server, checkout embed and webhooks."
+description: "Build on Paysum with the REST API, OAuth apps, theme CLI, MCP, checkout, and webhooks."
 ---
 
 <p>
-	Everything you can do in the dashboard has a programmable route. Pick the one that fits what you are
-	building; they all use the same store API keys, so one key system covers every tool.
+	Use a store API key for server requests or an OAuth app to let other sellers connect their stores.
+	The browser checkout scripts do not need a key.
 </p>
 <CardGroup cols={2}>
 	<Card title="Store API" href="https://docs.paysum.io/api" icon="Brackets">
@@ -25,6 +25,9 @@ description: "Every way to build on {brand}: REST API, theme CLI, MCP server, ch
 	</Card>
 	<Card title="Authentication" href="https://docs.paysum.io/authentication" icon="Lock">
 		Create keys, choose scopes and keep secrets safe.
+	</Card>
+	<Card title="OAuth apps" href="/oauth-apps">
+		Let sellers approve your integration for a store.
 	</Card>
 </CardGroup>
 
@@ -71,7 +74,7 @@ description: "Every way to build on {brand}: REST API, theme CLI, MCP server, ch
 ## Keys and scopes
 
 <p>
-	Keys are created in <strong>Dashboard → Developers → API keys</strong>. Each key belongs to one store
+	Create a key in <strong>Integrations → API keys</strong>. Each key belongs to one store
 	and carries scopes such as <code>products:read</code> or <code>themes:write</code>. A write scope
 	includes the matching read scope. See <a href="https://docs.paysum.io/authentication">Authentication</a> for the
 	full list.

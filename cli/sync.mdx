@@ -1,0 +1,20 @@
+---
+title: "Sync theme files"
+description: "Push changes, pull drafts, and resolve conflicts without losing edits."
+---
+
+`paysum status` lists local changes since the last sync without contacting the server.
+
+`paysum push` uploads new and edited files as drafts and removes the files you deleted. If the same file changed both locally and on the server, the push stops before writing.
+
+`paysum pull` downloads server changes and reports files with local edits instead of overwriting them. Review and merge conflicts before you push again.
+
+<Warning>
+  Use `paysum push --force` only when you intend to overwrite server changes. Use `paysum pull --force` only when you intend to overwrite local changes.
+</Warning>
+
+## What syncs
+
+The CLI syncs supported theme files, including Liquid, CSS, JavaScript, JSON, fonts, and images. The limit is 512 KB per file. Binary files count at their encoded size. Put larger media in your store's media library or on a CDN and use its URL.
+
+The CLI skips dotfiles and dot folders, build output, dependency folders, lockfiles, `paysum.json`, and generated `src/data/store.json`.

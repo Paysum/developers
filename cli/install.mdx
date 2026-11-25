@@ -1,0 +1,21 @@
+---
+title: "Install and sign in"
+description: "Install the Paysum CLI and connect it to a store."
+---
+
+Use Node.js 20 or later on macOS, Linux, or Windows. If you already have the CLI, run `paysum --version` to check that it is available.
+
+The CLI is not available from the public npm registry. If you do not have a copy, use the dashboard theme editor or the [Theme API](/api/theme/list-files).
+
+## Connect a store
+
+In **Integrations** → **API keys**, create a key. Give it `store:read` and `themes:write` to develop and publish themes. For read-only work, use `store:read` and `themes:read`. Copy the key when the dashboard shows it.
+
+```bash
+paysum login
+paysum whoami
+```
+
+Enter the key at the prompt. The CLI saves it in `~/.config/paysum/credentials.json` by default (`%APPDATA%\paysum\credentials.json` on Windows). If you sign in to more than one store, the CLI selects the key for the current theme folder.
+
+For commands other than `login`, set `PAYSUM_API_KEY` to use that key without saving it. See [CI and automation](/cli/ci).

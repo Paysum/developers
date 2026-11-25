@@ -7,7 +7,7 @@ This walkthrough takes you from a fresh store to a working checkout link using a
 
 <Steps>
   <Step title="Create an API key">
-    In the dashboard, open **Developers → API Keys** and create a key with the `checkout_api` permission. Copy it right away. It starts with `sk_` and is only shown once.
+    In the dashboard, open **Integrations** → **API keys** and select **Create API key**. Give it the `checkout_api` permission. Copy the key, which starts with `sk_`.
   </Step>
   <Step title="Store the key on your server">
     Keep the key in an environment variable on your backend. It must never ship to a browser or mobile app.
@@ -25,7 +25,8 @@ This walkthrough takes you from a fresh store to a working checkout link using a
       -H "Content-Type: application/json" \
       -d '{
         "line_items": [{ "name": "Premium License", "price": 29.99, "quantity": 1 }],
-        "success_url": "https://example.com/success"
+        "success_url": "https://example.com/success",
+        "webhook_url": "https://example.com/webhooks/checkout"
       }'
     ```
 
@@ -39,6 +40,7 @@ This walkthrough takes you from a fresh store to a working checkout link using a
       body: JSON.stringify({
         line_items: [{ name: 'Premium License', price: 29.99, quantity: 1 }],
         success_url: 'https://example.com/success',
+        webhook_url: 'https://example.com/webhooks/checkout',
       }),
     })
     const { url } = await response.json()

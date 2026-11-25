@@ -30,7 +30,7 @@ Take payments in your own product and move money out of the store.
 
 ## OpenAPI specification
 
-[Download the OpenAPI 3.1 specification](/openapi.json) to import the supported endpoints into your API client. It includes request parameters, permission requirements, and response examples from this reference.
+[Download the OpenAPI 3.1 specification](https://paysum.io/openapi.json) to import the supported endpoints into your API client. It includes request parameters, permission requirements, and response examples from this reference.
 
 <Note title="Public API and dashboard endpoints">
   A store API key can only call the endpoints documented here. Requests the dashboard makes in your browser are internal and are not available to keys.
@@ -44,7 +44,7 @@ https://paysum.io
 
 ## Authentication
 
-Send a store API key as a bearer token on every request. See [Authentication](https://docs.paysum.io/authentication) for permissions and key management.
+Send a store API key as a bearer token on the resource endpoints in this reference. See [Authentication](/authentication) for permissions and key management, or [OAuth apps](/oauth-apps) if other sellers must grant your integration access.
 
 ```http
 Authorization: Bearer sk_your_secret_key

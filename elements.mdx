@@ -1,0 +1,38 @@
+---
+title: "Checkout Elements"
+description: "Put Paysum checkout components into your own page."
+---
+
+Use Elements to put checkout on your page instead of in a [modal](/embed). One group shares one cart across all its elements. Paysum handles payment in store-origin frames. Your page does not need an API key or collect payment credentials.
+
+```html
+<div id="checkout"></div>
+<script src="https://paysum.io/elements.js"></script>
+<script>
+  const elements = PaysumElements({
+    store: 'your-store',
+    items: [{ product: 'PRODUCT_ID', quantity: 1 }],
+  })
+  elements.create('checkout').mount('#checkout')
+</script>
+```
+
+## Compose your checkout
+
+Mount `checkout` for the full form (pass `{ showSummary: false }` to hide the summary). To make your own layout, mount `summary`, `email`, `payment`, `coupon`, `consent`, and `pay` separately. Create each type once per group. Each element supports `mount(target)`, `unmount()`, `update(options)`, `focus()`, and `on(event, handler)`.
+
+Use `store` for the slug and `storeUrl` for a custom store origin. Pass up to 20 `items` with `product`, optional `variant`, and optional `quantity` (up to 99). Prices come from the store. Set `locale` to `en`, `es`, `fr`, `de`, `ja`, `zh`, or `auto`.
+
+## Branding
+
+Set `brand.mode` to `light`, `dark`, or `auto`. Use `brand.tokens` for values such as `accent`, `radius`, and `font`, `brand.fonts` for Google Fonts, and `brand.rules` for supported selectors such as `.os-button-primary`. Set `brand.preset` to `bare` to remove the default surfaces and borders. Rules cannot hide or move checkout content. Call `elements.update({ brand, items })` to update the group.
+
+## Start payment
+
+Use the `pay` element or call `elements.confirmPayment({ returnUrl })` from your own button. The method returns a result with `error` or `order` when applicable. External methods send the buyer to a payment page. In-place payments can use `returnUrl`, with an `order` query parameter. Shipped goods and products that require Discord connection send the buyer to full checkout.
+
+## Events
+
+Listen for `ready` before you show the form, `change` for cart and input state, `error` for failures, and `complete` for in-place payments. The `navigate` event provides `url` and `reason`; call `preventDefault()` if you handle navigation. Other events include `resize`, `focus`, `blur`, `trace` for refused branding settings, and `loaderror` for load timeouts.
+
+Allow the script and your store's frame origin in your Content Security Policy. Verify payment on your server before you deliver.

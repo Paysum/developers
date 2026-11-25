@@ -1,0 +1,66 @@
+---
+title: "Webhooks"
+description: "Receive and verify signed checkout and withdrawal events."
+---
+
+Pass a publicly reachable HTTPS `webhook_url` when you [create a checkout session](/api/checkout/create-session) or [request a withdrawal](/api/withdrawals/create-withdrawal). Paysum sends a JSON `POST` when the resource changes state. Return a `2xx` response within 10 seconds.
+
+| Event | When Paysum sends it |
+| --- | --- |
+| `checkout.session.completed` | The buyer paid. |
+| `checkout.session.cancelled` | The session was cancelled. |
+| `checkout.session.expired` | Paysum detects that the session expired without payment. Do not expect it at the exact expiry time. |
+| `withdrawal.completed` | The payout was broadcast. The data includes `tx_hash`. |
+| `withdrawal.failed` | The payout could not be sent. |
+
+## Payload
+
+The body contains `event`, `data`, and `created`. The `data` object describes the session or withdrawal that changed.
+
+```json
+{
+  "event": "checkout.session.completed",
+  "data": {
+    "id": "cs_example",
+    "status": "completed",
+    "total_amount": 80,
+    "currency": "USD",
+    "client_reference_id": "order-123"
+  },
+  "created": "2026-03-04T18:30:01.000Z"
+}
+```
+
+## Verifying signatures
+
+Find your store's **Webhook signing secret** under **Integrations** → **API keys**. Keep it on your server. The `x-webhook-signature` header uses `t=<unix seconds>,v1=<hex>`. Paysum computes `v1` with HMAC-SHA256 over the timestamp, a dot, and the exact raw body bytes. During the 24-hour period after rotation, the header can have two `v1` values. Accept a match against either value.
+
+```js
+import { createHmac, timingSafeEqual } from 'node:crypto'
+
+export function verify(rawBody, header, secret) {
+  if (!secret || !header) return false
+  const fields = header.split(',').map((entry) => entry.trim().split('='))
+  const timestamp = fields.find(([key]) => key === 't')?.[1]
+  if (!timestamp || !/^\d+$/.test(timestamp)) return false
+  if (Math.abs(Date.now() / 1000 - Number(timestamp)) > 300) return false
+
+  const expected = createHmac('sha256', secret)
+    .update(`${timestamp}.`)
+    .update(rawBody)
+    .digest()
+
+  return fields.some(([key, value]) =>
+    key === 'v1' && /^[0-9a-f]{64}$/i.test(value ?? '') &&
+    timingSafeEqual(Buffer.from(value, 'hex'), expected),
+  )
+}
+```
+
+Pass the raw request body as a `Buffer`, before you parse the JSON. After verification, use the event name and resource ID to prevent duplicate processing.
+
+<Warning>
+  Do not use the legacy `X-Swiftly-Signature` header to verify a webhook. Use `x-webhook-signature`.
+</Warning>
+
+For requests that must return goods to the buyer, see [Dynamic delivery](/dynamic-delivery).

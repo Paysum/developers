@@ -1,0 +1,52 @@
+---
+title: "Checkout embed"
+description: "Add a button that opens Paysum checkout in a modal on your site."
+---
+
+In **Catalog** → **Products**, open the product actions menu and select **Embed checkout**. Copy the button code. Load the script once per page. The embed does not need an API key.
+
+```html
+<script src="https://paysum.io/embed.js" defer></script>
+<button type="button" data-product="PRODUCT_ID" data-store="your-store">Buy now</button>
+```
+
+## Button attributes
+
+| Attribute | Use |
+| --- | --- |
+| `data-product` | Required. Product ID. |
+| `data-store` | Required. Store slug. The older `data-store-slug` also works. |
+| `data-store-url` | Optional. Custom store origin, for example `https://shop.example.com`. The default uses your store's `mypaysum.io` subdomain. |
+| `data-lang` | Optional. `en`, `es`, `fr`, `de`, `ja`, or `zh`. The script uses the page or browser language if you omit it, with English as the fallback. |
+
+The script also works with buttons you add after the page loads. Disabled buttons do not open checkout. On small screens, checkout opens from the bottom of the page.
+
+## Appearance
+
+Open **Settings** → **Checkout embed** to set the background, product summary, text, and pay button colors. You can also set the **Button texture**. Changes apply the next time a buyer opens checkout.
+
+## JavaScript API
+
+After the script loads, use `window.Paysum.open(productId, options)` or `window.Paysum.close()`. Pass `store` if no matching button is present. Optional settings include `lang`, `storeUrl`, and `checkoutPath` (default `/checkout`).
+
+```js
+window.Paysum.open('PRODUCT_ID', { store: 'your-store', lang: 'en' })
+```
+
+Use `preload(productId, options)` to load checkout early, `retry(productId)` to reload a failed checkout, and `clearCache()` to remove inactive frames. Use `configure(options)` to set defaults and `destroy()` to remove the integration. `window.Swiftly` is a legacy alias.
+
+## Events
+
+Listen on `window`. Use browser events for interface feedback, not as proof of payment.
+
+| Event | When it fires |
+| --- | --- |
+| `paysum-checkout-open` | A product checkout opens. The detail includes `productId`, `storeSlug`, and `lang`. |
+| `paysum--open` | The modal opens. |
+| `paysum--close` | The modal closes. |
+| `paysum-purchase-complete` | Checkout reports completion. |
+| `paysum-purchase-error` | Checkout reports an error. |
+
+## Before you go live
+
+Use an active product with stock and a compatible payment method. Test the button on mobile and desktop. If you use a Content Security Policy, allow the Paysum script, the store's checkout frame, and the injected styles. See [Embed troubleshooting](/embed-troubleshooting) for checks.

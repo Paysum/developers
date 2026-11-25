@@ -30,6 +30,7 @@
               "themes",
               "custom-domain",
               "custom-pages",
+              "status-page",
               "seo",
               "legal"
             ]
@@ -91,7 +92,9 @@
               "coupons",
               "gift-cards",
               "referral-codes",
-              "discord-roles"
+              "discord-roles",
+              "discord-webhooks",
+              "automations"
             ]
           },
           {
@@ -110,7 +113,9 @@
             "group": "Get started",
             "pages": [
               "developers",
+              "sdks",
               "authentication",
+              "oauth-apps",
               "quickstart"
             ]
           },
@@ -119,13 +124,22 @@
             "pages": [
               "hosted-checkout",
               "embed",
-              "elements"
+              "elements",
+              "embed-troubleshooting"
             ]
           },
           {
             "group": "Events",
             "pages": [
-              "webhooks"
+              "webhooks",
+              "dynamic-delivery"
+            ]
+          },
+          {
+            "group": "Storefront themes",
+            "pages": [
+              "liquid-themes",
+              "storefront-runtime"
             ]
           }
         ]

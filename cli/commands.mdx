@@ -1,0 +1,30 @@
+---
+title: "CLI commands"
+description: "Paysum CLI commands, options, and environment variables."
+---
+
+Run `paysum --help` for the installed version's options.
+
+| Command | Use |
+| --- | --- |
+| `login` | Sign in and save a store key. |
+| `logout` | Remove the saved key for the current store or `--store <id>`. |
+| `whoami` | Show the active store, scopes, and theme folder. |
+| `init [folder]` | Download theme files. Defaults to a folder named after the store. |
+| `pull` | Download server drafts. Use `--force` to overwrite local edits. |
+| `status` | List local changes since the last sync. |
+| `push` | Upload local changes as drafts. Use `--force` to overwrite server conflicts. |
+| `watch` | Upload changes on save and show a preview link. |
+| `preview` | Print a new preview link for the server drafts. |
+| `publish` | Upload, build, and publish. Use `--no-push` to publish server drafts only or `--yes` to skip confirmation. |
+| `versions` | List versions and identify the live version. |
+| `open` | Open the live storefront. |
+
+Aliases: `dev` for `watch`, `deploy` for `publish`, `ls` for `versions`, and `info` for `whoami`. Use `--open` with `watch`, `preview`, or `publish` to open the resulting URL.
+
+| Option or variable | Use |
+| --- | --- |
+| `--key` or `PAYSUM_API_KEY` | Use a key instead of a saved key. Prefer the environment variable for automation. |
+| `--api` or `PAYSUM_API_URL` | Set the API origin. The default is `https://paysum.io`. |
+| `PAYSUM_CONFIG_DIR` | Set the directory for saved credentials. |
+| `NO_COLOR` | Disable color output. |

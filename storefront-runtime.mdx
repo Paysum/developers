@@ -1,0 +1,154 @@
+---
+title: "Storefront runtime"
+description: "Add the cart, product page, search, menus and sign-in to a Liquid theme with data-os attributes."
+---
+
+Every Paysum storefront loads the storefront runtime. It is a small script that gives all themes the same behavior: the cart, the product page, search, menus, carousels and customer sign-in. You do not write JavaScript for these. You mark elements with `data-os-*` attributes and the runtime does the rest.
+
+The cart and the customer session are the same as on Paysum's own pages, so a cart filled on your theme carries over to checkout.
+
+## Cart
+
+### Add to cart from a product card
+
+```liquid
+<button type="button"
+  data-os-add="{{ product | cart_json | escape }}"
+  data-os-href="{{ product.href }}">
+  Add to cart
+</button>
+```
+
+`data-os-add` takes the product as JSON from the `cart_json` filter. A click adds one item and opens the cart. Products with variants go to `data-os-href` instead, so the buyer can choose an option.
+
+### Open the cart and show the count
+
+```liquid
+<button type="button"
+  aria-label="Cart, 0 items"
+  data-os-cart-open
+  data-os-cart-badge="cart-count"
+  data-os-cart-badge-max="9"
+  data-os-cart-label="Cart, {n} item{s}">
+  Cart
+</button>
+```
+
+| Attribute | What it does |
+| --- | --- |
+| `data-os-cart-open` | Opens Paysum's cart drawer. If the drawer cannot load, it goes to checkout. |
+| `data-os-cart-badge="<class>"` | Adds a `<span class="<class>">` with the item count while the cart has items. |
+| `data-os-cart-badge-max` | The highest number shown before `+`. Default `99`. |
+| `data-os-cart-label` | The button's accessible label. `{n}` is the count, `{s}` adds an `s` when the count is not 1. |
+| `data-os-cart-count` | Any element: its text becomes the count, or empty at zero. Format it with `data-os-format="{n} items"`. |
+
+## Product page
+
+Wrap the buying area of `templates/product.liquid` in `data-os-product-page`. The runtime reads the product from the page and keeps the price, quantity and stock in step with the buyer's choices.
+
+```liquid
+<div data-os-product-page="{{ product.id }}">
+  <img src="{{ page.gallery.first | default: product.image }}" alt="{{ product.title }}" data-os-gallery-main>
+  {% for src in page.gallery %}
+    <button type="button" data-os-gallery-thumb="{{ src }}">…</button>
+  {% endfor %}
+
+  <strong data-os-total>{{ page.price_formatted }}</strong>
+  <span data-os-each hidden>{{ page.price_formatted }} each</span>
+
+  {% for variant in product.variants %}
+    <button type="button" data-os-variant="{{ variant.id }}">{{ variant.name }}</button>
+  {% endfor %}
+
+  <button type="button" data-os-qty="-1">−</button>
+  <output data-os-qty-value>1</output>
+  <button type="button" data-os-qty="1">+</button>
+
+  <button type="button" data-os-buy-now data-os-label="Buy now" data-os-label-sold-out="Out of stock">Buy now</button>
+  <button type="button" data-os-add-to-cart data-os-label-added="Added to cart">Add to cart</button>
+
+  <p data-os-stock data-os-format="{n} in stock" data-os-out="Out of stock"></p>
+</div>
+```
+
+| Attribute | What it does |
+| --- | --- |
+| `data-os-product-page` | The root of the buying area. |
+| `data-os-require-variant` | On the root: the buyer must pick a variant before buying. |
+| `data-os-variant="<id>"` | Selects that variant. The selected button gets `aria-pressed="true"`. |
+| `data-os-unselected` | Shown only while no variant is selected. |
+| `data-os-qty="-1"`, `data-os-qty="1"` | Decrease and increase the quantity. Plus is disabled at the stock limit. |
+| `data-os-uncapped` | On the plus button: keep it enabled at the stock limit. The quantity is still limited. |
+| `data-os-qty-value` | Shows the quantity. |
+| `data-os-total` | Shows price × quantity. |
+| `data-os-each` | Shows the unit price when the quantity is more than 1. Format with `data-os-format="{price} each"`. |
+| `data-os-buy-now` | Goes straight to checkout with the selection. Labels: `data-os-label`, `data-os-label-sold-out`, `data-os-label-choose` (while a variant is required). |
+| `data-os-add-to-cart` | Adds the selection to the cart. `data-os-label-added` shows for 2 seconds after a click. |
+| `data-os-stock` | Shows stock. Options: `data-os-format="{n} in stock"`, `data-os-out` (sold-out text), `data-os-unknown` (keep visible when stock is unlimited). Gets `data-out="true"` when sold out. |
+| `data-os-gallery-main`, `data-os-gallery-thumb="<url>"` | A thumbnail click swaps the main image. |
+
+## Search
+
+```liquid
+<input type="search" data-os-search="product-grid" placeholder="Search products">
+<ul id="product-grid">
+  {% for product in products %}
+    <li data-os-search-text="{{ product.title | downcase | escape }}">…</li>
+  {% endfor %}
+</ul>
+<p data-os-search-empty="product-grid" hidden>No products match.</p>
+```
+
+`data-os-search` names the list's `id`. Items whose `data-os-search-text` contains the query stay visible. `data-os-search-empty` shows when nothing matches.
+
+## Customer sign-in
+
+| Attribute | What it does |
+| --- | --- |
+| `data-os-account` | Opens the sign-in dialog, or the account page when the buyer is signed in. Its accessible label switches between **Sign in** and **Open account**. Add `data-os-fixed-label` to keep your own label. |
+| `data-os-account-label="My account"` | Text shown while signed in. The element's own text shows while signed out. |
+
+Sign-in uses the same email code flow as the account page.
+
+## Menus, panels and banners
+
+| Attribute | What it does |
+| --- | --- |
+| `data-os-menu-toggle="<id>"` | Opens and closes the element with that `id`, and sets `aria-expanded`. |
+| `data-os-menu-close` | Closes the open menu. Links inside the menu close it too. |
+| `data-os-toggle="<id>"` | Shows or hides the element with that `id`. |
+| `data-os-dismiss="<selector>"` | Hides the closest ancestor that matches the selector, for example an announcement bar. |
+| `data-os-scroll="<px>:<attribute>"` | Sets the attribute on the element once the page scrolls past that many pixels, for example `data-os-scroll="8:data-scrolled"` on the header. |
+| `data-os-accordion`, `data-os-accordion-item`, `data-os-accordion-toggle` | One item open at a time. The open item gets `data-open`, toggles get `aria-expanded`. |
+
+## Carousels and effects
+
+| Attribute | What it does |
+| --- | --- |
+| `data-os-carousel` | A rotating carousel. Set the delay with `data-os-carousel-interval` (milliseconds). Slides cross-fade. |
+| `<canvas data-os-particles>` | A light particle field behind the content. |
+
+The runtime also:
+
+- Replaces broken product images inside `data-os-product` with generated product art.
+- Prefetches store pages on hover so navigation feels instant.
+- Shows the store popups set up under **Marketing** → **Popups**.
+- Loads the integrations from **Integrations** → **App store** (Google Analytics, Meta Pixel, Crisp and others).
+
+## Events
+
+| Event | Direction | Meaning |
+| --- | --- | --- |
+| `paysum:cart-updated` | Sent by the runtime on `window` | The cart changed. `event.detail` is the cart: a list of `{ product, quantity }`. |
+| `paysum:customer-login` | Listened to by the runtime | Dispatch it on `window` to open sign-in from your own code. |
+
+```js
+window.addEventListener('paysum:cart-updated', (event) => {
+  console.log('Items in cart:', event.detail.length)
+})
+```
+
+## Next steps
+
+- [Liquid theme reference](/liquid-themes)
+- [Checkout embed](/embed)

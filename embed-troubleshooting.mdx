@@ -1,0 +1,72 @@
+---
+title: "Embed not loading"
+description: "Fix a checkout embed that does not open, shows an error, or never appears."
+---
+
+Work through these checks in order. Open your browser's developer tools (**Console** and **Network**) while you test.
+
+## 1. The script is on the page once
+
+```html
+<script src="https://paysum.io/embed.js" defer></script>
+```
+
+- In the console, run `Paysum.version`. It prints the version, for example `3.2.5`. If it prints an error, the script did not load: check the URL and your Content Security Policy.
+- Load `embed.js` only once. A second copy does nothing.
+- Do not load the older `paysum.min.js` on the same page. It also uses the `Paysum` name.
+
+## 2. The button has a product and a store
+
+```html
+<button data-product="PRODUCT_ID" data-store="your-store">Buy now</button>
+```
+
+- `data-product` (or `data-bundle` for a bundle) and `data-store` are both required. The console shows `[Paysum] A valid product ID and store are required` when one is missing.
+- IDs and the store slug can only contain letters, numbers, `-` and `_`. Copy them from the product's **Embed checkout** option in the dashboard.
+- Disabled buttons (`disabled` or `aria-disabled="true"`) do not open checkout.
+
+## 3. The checkout frame is allowed
+
+If your site sends a `Content-Security-Policy` header, allow:
+
+| Directive | Value |
+| --- | --- |
+| `script-src` | `https://paysum.io` |
+| `frame-src` | `https://*.paysum.io https://*.mypaysum.io`, plus your custom store domain if you use `data-store-url` |
+| `style-src` | A policy that allows the styles the embed adds |
+
+A blocked frame shows as a CSP error in the console. If your policy does not permit the embed's inline styles, use [Checkout Elements](/elements) or [hosted checkout](/hosted-checkout) instead.
+
+## 4. The custom domain is valid
+
+`data-store-url` must be an `https://` address, for example `https://shop.example.com`. Other values are ignored and checkout does not open. Leave it out to use your Paysum store address.
+
+## 5. Checkout loads but shows an error
+
+The embed waits 15 seconds for checkout to load and tries again twice. After that it shows **Unable to load checkout** with **Try again**.
+
+- Check that the store and product exist and the product is **Active**.
+- Check that the product has stock and at least one payment method that is on.
+- Open the checkout address from the **Network** tab in a new tab to see the error page.
+
+## 6. Safari and in-app browsers
+
+Some browsers block third-party frames or cookies. To open checkout in a popup window in Safari instead of a frame:
+
+```js
+Paysum.configure({ safariPopup: true })
+```
+
+## Debug with events
+
+```js
+window.addEventListener('paysum-checkout-open', () => console.log('Checkout opened'))
+window.addEventListener('paysum-purchase-complete', () => console.log('Checkout reported completion'))
+window.addEventListener('paysum-purchase-error', () => console.log('Checkout reported an error'))
+```
+
+See [Checkout embed](https://docs.paysum.io/embed#events) for all events.
+
+## Still stuck?
+
+[Contact support](https://docs.paysum.io/support) with the page address, the product ID, and a screenshot of the console.

@@ -1,0 +1,29 @@
+---
+title: "Develop a theme"
+description: "Download your theme, preview draft changes, and publish a version."
+---
+
+## Download the theme
+
+```bash
+paysum init my-theme
+cd my-theme
+```
+
+Commit the theme files and `paysum.json` to Git. The CLI creates an ignore rule for the local sync state in `.paysum/` if there is no `.gitignore`. See the [Liquid theme reference](/liquid-themes) for the theme file layout.
+
+## Preview changes
+
+```bash
+paysum watch --open
+```
+
+The CLI uploads changes as drafts and reloads the preview after it builds. You can add and delete files. Buyers still see the published version. Press Ctrl+C to stop watching.
+
+## Publish
+
+```bash
+paysum publish
+```
+
+The CLI uploads remaining changes and asks before publishing. A failed build leaves the live version in place. Use `paysum versions` to list published versions. To roll back, open **Store editor** → **History** in the dashboard.

@@ -1,0 +1,53 @@
+---
+title: "OAuth apps"
+description: "Let sellers connect a store to your integration and approve its access."
+---
+
+Use an OAuth app when your integration needs access to other sellers' stores. A seller selects one store and approves permissions. Your server receives a scoped store API key for the [Store API](/api) or [MCP](/mcp). For only your own store, create a [store API key](/authentication) instead.
+
+## Create an app
+
+Open **Integrations** → **OAuth apps** and select **New app**. Enter the app name, allowed permissions, and up to 10 redirect URLs. Use HTTPS. For local development, you can use HTTP with `localhost` or `127.0.0.1`.
+
+Keep the client ID (`pca_…`) and client secret (`pcs_…`). The dashboard shows the secret once. Keep it on your server. **New secret** replaces the old secret, which stops working immediately.
+
+## Ask the seller to approve
+
+Send the seller to `https://dashboard.paysum.io/oauth/authorize` with these query parameters. URL-encode each value.
+
+| Parameter | Use |
+| --- | --- |
+| `client_id` | Required. Your app's client ID. |
+| `redirect_uri` | Required. An exact match for a registered redirect URL. |
+| `state` | Use a random, single-use value linked to the seller's session. Check it on return before you accept the result. |
+| `code_challenge` and `code_challenge_method` | Optional PKCE. Use `S256` and the base64url-encoded SHA-256 hash of the verifier. |
+
+The seller signs in, chooses a store, and can clear permissions before selecting **Allow** or **Deny**. On approval, Paysum redirects with `code`. On denial, it redirects with `error=access_denied`. It returns `state` in either case if you sent it.
+
+## Exchange the code for a key
+
+Exchange it on your server within five minutes. Each code works once. If you sent a PKCE challenge, include its `code_verifier`. PKCE does not replace the client secret.
+
+```bash
+curl https://api.paysum.io/api/oauth-apps/token \
+  --data-urlencode 'grant_type=authorization_code' \
+  --data-urlencode "code=$PAYSUM_AUTH_CODE" \
+  --data-urlencode "redirect_uri=$PAYSUM_REDIRECT_URI" \
+  --data-urlencode "client_id=$PAYSUM_CLIENT_ID" \
+  --data-urlencode "client_secret=$PAYSUM_CLIENT_SECRET"
+```
+
+```json
+{
+  "access_token": "sk_example",
+  "token_type": "Bearer",
+  "scope": "products:read orders:read",
+  "store": { "id": "example-id", "name": "Nova Supply", "slug": "nova-supply" }
+}
+```
+
+Store the key securely by store ID and check the returned scopes before you use it. Do not log codes, secrets, or token responses. Send the key as `Authorization: Bearer <access_token>`. There is no refresh token. If the seller approves the app again for the same store, the new key replaces the old one.
+
+## Reconnect a store
+
+The key stops working if the seller selects **Disconnect**, deletes the key, or loses access to the store. Deleting the app revokes its keys for all connected stores. If the API returns `401` with `api_key_disabled` or `invalid_api_key`, ask the seller to connect again.

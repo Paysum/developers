@@ -1,0 +1,27 @@
+---
+title: "CI and automation"
+description: "Publish a theme from GitHub Actions with a scoped key."
+---
+
+Use a dedicated key with `store:read` and `themes:write`. Save it as the `PAYSUM_API_KEY` repository secret. Run the command from the theme folder, with `paysum.json` in the repository. You do not need to run `paysum login`.
+
+## GitHub Actions
+
+Use this step after you check out the repository and make the `paysum` command available to the runner. See [CLI availability](/cli/install).
+
+```yaml
+- name: Publish theme
+  run: paysum publish --yes
+  env:
+    PAYSUM_API_KEY: ${{ secrets.PAYSUM_API_KEY }}
+```
+
+The command stops on conflicts. A clean runner has no sync state, so files that differ from the server can count as conflicts. Add `--force` only if repository files must overwrite matching dashboard drafts. On a clean runner, this does not remove server-only files. Restrict access to the branch before you enable the job.
+
+## Exit codes
+
+| Code | Meaning |
+| --- | --- |
+| `0` | Success. |
+| `1` | The command failed, for example due to a conflict, access error, or build error. |
+| `2` | Unknown command or invalid option. |

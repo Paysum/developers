@@ -1,0 +1,16 @@
+---
+title: "MCP server"
+description: "Connect an assistant to the Paysum Store API with a scoped key."
+---
+
+The hosted [Model Context Protocol](https://modelcontextprotocol.io) server lets an assistant read catalog or order data, manage products and coupons, or edit theme files. A key grants access to one store. The server lists only the [tools](/mcp/tools) that the key can call. Theme edits stay in drafts until you publish.
+
+## Connect
+
+```text
+https://paysum.io/api/mcp
+```
+
+Use Streamable HTTP. Send JSON-RPC with `POST` and include `Authorization: Bearer sk_…` on every request. Responses are JSON. The server is stateless and does not require a session header. It supports protocol versions `2025-06-18`, `2025-03-26`, and `2024-11-05`.
+
+See [Connect a client](/mcp/clients) for examples and [Security](/mcp/security) before you grant write access.

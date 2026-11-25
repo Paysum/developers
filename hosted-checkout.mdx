@@ -1,0 +1,30 @@
+---
+title: "Hosted checkout"
+description: "Create a checkout session on your server and send the buyer to Paysum to pay."
+---
+
+Create a [checkout session](/api/checkout/create-session) from your server with the `checkout_api` permission. Redirect the buyer to the `url` in the response. Use the [API quickstart](/quickstart) for a complete request.
+
+## Choose what to sell
+
+Send `product_ids` for items from your store. Paysum uses the catalog price, checks stock, and uses the product's delivery settings.
+
+```json
+{ "product_ids": [{ "id": "prod_123", "quantity": 1, "variant_name_or_id": "Lifetime" }] }
+```
+
+Send `line_items` instead for custom goods or services. Set the prices yourself. Use the `checkout.session.completed` [webhook](/webhooks) to deliver the order.
+
+```json
+{ "line_items": [{ "name": "Consulting hour", "price": 80, "quantity": 2 }] }
+```
+
+## Session lifecycle
+
+Sessions start as `pending` and end as `completed`, `cancelled`, or `expired`. The default expiry is 24 hours. Set `expires_in_seconds` or `expires_in_hours` to change it. Use `expired_url` to send buyers to another page after expiry.
+
+Set `success_url` and `cancel_url` to control where the buyer returns. A browser redirect does not confirm payment. Verify a signed webhook or get the [session status](/api/checkout/get-session) on your server before you deliver.
+
+## Customize checkout
+
+Set `hide_navbar` and `hide_footer` to hide parts of the page. Set `disable_coupons` or `disable_gift_cards` to stop buyers from applying those codes. See [Create a checkout session](/api/checkout/create-session) for the full request options.
