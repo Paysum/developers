@@ -79,7 +79,7 @@
   --action-tile: #a74629;
 }
 
-[role="menu"] [role="menuitem"] > div:first-child:has(> svg:has(> title) path[d^="M21.55 10.004"]) {
+[role="menu"] [role="menuitem"] > div:first-child:has(> svg > path[d^="M21.55 10.004"]) {
   --action-tile: #087b62;
 }
 
