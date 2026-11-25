@@ -94,3 +94,136 @@
 [role="menu"] [role="menuitem"] > div:first-child:has(> svg[viewBox="0 0 192 192"]) {
   --action-tile: #8a388e;
 }
+
+:is(#chat-assistant-sheet, .chat-assistant-floating-input) {
+  --ask-surface: #fff;
+  --ask-raised: #f7f9fc;
+  --ask-line: #dce3ee;
+  --ask-accent: #2563eb;
+  --ask-tile: #e8efff;
+  --ask-muted: #526079;
+  --ask-shadow: rgb(20 38 70 / 12%);
+}
+
+.dark :is(#chat-assistant-sheet, .chat-assistant-floating-input) {
+  --ask-surface: #10131a;
+  --ask-raised: #171d28;
+  --ask-line: #313b4d;
+  --ask-accent: #75a5ff;
+  --ask-tile: #1a2945;
+  --ask-muted: #aebbd0;
+  --ask-shadow: rgb(0 0 0 / 38%);
+}
+
+#chat-assistant-sheet {
+  background-color: var(--ask-surface);
+}
+
+#chat-assistant-sheet[role="dialog"] {
+  border-top: 1px solid var(--ask-line);
+  border-radius: 20px 20px 0 0;
+}
+
+#chat-assistant-sheet .chat-assistant-sheet-header {
+  min-height: 60px;
+  gap: 12px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--ask-line);
+  background-color: var(--ask-raised);
+}
+
+.chat-assistant-sheet-header > div:first-child > svg {
+  box-sizing: content-box;
+  padding: 7px;
+  border-radius: 8px;
+  color: var(--ask-accent);
+  background-color: var(--ask-tile);
+}
+
+#chat-assistant-sheet .chat-assistant-sheet-header button {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+}
+
+#chat-assistant-sheet button:focus-visible {
+  outline: 2px solid var(--ask-accent);
+  outline-offset: 2px;
+}
+
+#chat-assistant-sheet .chat-assistant-disclaimer-text {
+  max-width: 32ch;
+  margin-inline: 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--ask-line);
+  border-radius: 10px;
+  color: var(--ask-muted);
+  background-color: var(--ask-raised);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+:is(#chat-assistant-sheet, .chat-assistant-floating-input) div:has(> div > .chat-assistant-input) {
+  border-color: var(--ask-line);
+  border-radius: 14px;
+  background-color: var(--ask-raised);
+}
+
+.chat-assistant-floating-input div:has(> div > .chat-assistant-input) {
+  background-color: var(--ask-surface);
+  box-shadow: 0 4px 16px var(--ask-shadow);
+}
+
+:is(#chat-assistant-sheet, .chat-assistant-floating-input) div:has(> div > .chat-assistant-input):focus-within {
+  border-color: var(--ask-accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ask-accent) 22%, transparent);
+}
+
+.chat-assistant-input::placeholder {
+  color: var(--ask-muted);
+  opacity: 1;
+}
+
+:is(#chat-assistant-sheet, .chat-assistant-floating-input) .chat-assistant-send-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background-color: #2563eb;
+}
+
+:is(#chat-assistant-sheet, .chat-assistant-floating-input) .chat-assistant-send-button:disabled {
+  background-color: var(--ask-tile);
+}
+
+:is(#chat-assistant-sheet, .chat-assistant-floating-input) .chat-assistant-send-button:disabled svg {
+  color: var(--ask-muted);
+}
+
+.chat-assistant-floating-input .chat-assistant-input {
+  padding-right: 88px;
+}
+
+.chat-assistant-floating-input .chat-assistant-send-button {
+  right: 8px;
+}
+
+.chat-assistant-floating-input .chat-assistant-input + span {
+  right: 48px;
+}
+
+@media (max-width: 1023px) {
+  #chat-assistant-sheet[role="dialog"],
+  .chat-assistant-floating-input {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@media (pointer: coarse) {
+  #chat-assistant-sheet :is(.chat-assistant-send-button, [aria-label="Add attachment"]) {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+  }
+}
