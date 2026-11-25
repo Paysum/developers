@@ -7,6 +7,8 @@ Create a separate key under **Integrations** → **API keys**. Start with the re
 
 ## Cursor
 
+<Icon src="/images/brands/cursor.svg" size={24} />
+
 Add this to `.cursor/mcp.json` in the project or `~/.cursor/mcp.json` for all projects. Set `PAYSUM_API_KEY` in Cursor's environment.
 
 ```json
@@ -22,6 +24,8 @@ Add this to `.cursor/mcp.json` in the project or `~/.cursor/mcp.json` for all pr
 
 ## Claude Code
 
+<Icon src="/images/brands/claude.svg" size={24} />
+
 ```bash
 claude mcp add --transport http paysum https://paysum.io/api/mcp \
   --header 'Authorization: Bearer ${PAYSUM_API_KEY}'
@@ -30,6 +34,8 @@ claude mcp add --transport http paysum https://paysum.io/api/mcp \
 Set `PAYSUM_API_KEY` in Claude Code's environment and use `/mcp` to check the connection.
 
 ## VS Code
+
+<Icon src="/images/brands/vscode.svg" size={24} />
 
 Add this to `.vscode/mcp.json`. VS Code prompts for the key when it starts the server.
 

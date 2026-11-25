@@ -3,6 +3,11 @@ title: "Payment methods"
 description: "Connect the accounts and wallets buyers use to pay your store."
 ---
 
+<Frame caption="Find and configure payment methods in the PaySum dashboard.">
+  <img className="block dark:hidden" src="/images/dashboard/overview.webp" alt="PaySum payment settings with provider options" />
+  <img className="hidden dark:block" src="/images/dashboard/overview.dark.webp" alt="PaySum payment settings with provider options" />
+</Frame>
+
 ## Set it up
 
 <Steps>
@@ -22,9 +27,46 @@ description: "Connect the accounts and wallets buyers use to pay your store."
 
 ## Which method to use
 
-Cards: Stripe, Square, Shopify, NMI, Authorize.net, Mollie, SumUp, Pandabase, Paddle, Lemon Squeezy, Whop and Card to crypto. Wallets and alternatives: PayPal, PayPal Friends & Family, Cash App, Venmo, Skinloop, OVGC and Customer balance. Crypto: Bitcoin, Litecoin and Ethereum to your own wallets, or NOWPayments, Heleket, Cryptomus and Coinbase.
+### Cards and commerce
 
-Each method has its own guide in this section with the exact keys to copy and where to find them.
+<CardGroup cols={3}>
+  <Card title="Stripe" href="/stripe" icon="/images/brands/stripe.svg" />
+  <Card title="Square" href="/square" icon="/images/brands/square.svg" />
+  <Card title="Shopify" href="/shopify" icon="/images/brands/shopify.svg" />
+  <Card title="NMI" href="/nmi" icon="/images/brands/nmi.png" />
+  <Card title="Authorize.net" href="/authorize-net" icon="/images/brands/authorizenet.png" />
+  <Card title="Mollie" href="/mollie" icon="/images/brands/mollie.png" />
+  <Card title="SumUp" href="/sumup" icon="/images/brands/sumup.svg" />
+  <Card title="Pandabase" href="/pandabase" icon="/images/brands/pandabase.png" />
+  <Card title="Paddle" href="/paddle" icon="/images/brands/paddle.svg" />
+  <Card title="Lemon Squeezy" href="/lemonsqueezy" icon="/images/brands/lemonsqueezy.svg" />
+  <Card title="Whop" href="/whop" icon="/images/brands/whop.svg" />
+</CardGroup>
+
+See [Card to crypto](/card-to-crypto) or [Custom processor](/custom-processor) for other options.
+
+### Wallets and alternative methods
+
+<CardGroup cols={3}>
+  <Card title="PayPal" href="/paypal" icon="/images/brands/paypal.svg" />
+  <Card title="Cash App" href="/cash-app-and-venmo" icon="/images/brands/cashapp-glyph.svg" />
+  <Card title="Venmo" href="/cash-app-and-venmo" icon="/images/brands/venmo-glyph.svg" />
+  <Card title="Skinloop" href="/skinloop" icon="/images/brands/skinloop.png" />
+  <Card title="OVGC" href="/ovgc" icon="/images/brands/ovgc.png" />
+</CardGroup>
+
+See [Customer balance](/customer-balance) for store credit.
+
+### Crypto providers
+
+<CardGroup cols={2}>
+  <Card title="NOWPayments" href="/nowpayments" icon="/images/brands/nowpayments.png" />
+  <Card title="Heleket" href="/heleket" icon="/images/brands/heleket.svg" />
+  <Card title="Cryptomus" href="/cryptomus" icon="/images/brands/cryptomus.svg" />
+  <Card title="Coinbase" href="/coinbase" icon="/images/brands/coinbase.svg" />
+</CardGroup>
+
+See [Crypto payments](/crypto-payments) for direct wallet payments and blockchain confirmations.
 
 ## Only enabled methods are shown
 
@@ -45,20 +87,3 @@ Card and PayPal providers report payment results through their integrations. Cry
 </Note>
 
 Still stuck? [Contact support](https://docs.paysum.io/support) with the store, the page, and any order or request reference.
-
-## Next steps
-
-<CardGroup cols={2}>
-  <Card title="Connect Stripe" href="https://docs.paysum.io/stripe" icon="CreditCard">
-    Configure card payments using the Stripe settings supported by your store.
-  </Card>
-  <Card title="Connect Square" href="https://docs.paysum.io/square" icon="CreditCard">
-    Accept cards, Apple Pay, Google Pay and Cash App Pay on a Square payment link.
-  </Card>
-  <Card title="Connect PayPal" href="https://docs.paysum.io/paypal" icon="CreditCard">
-    Set up PayPal and distinguish standard checkout from Friends & Family settings.
-  </Card>
-  <Card title="Crypto payments and wallets" href="https://docs.paysum.io/crypto-payments" icon="Wallet">
-    Understand wallet balances, blockchain confirmation, and crypto withdrawals.
-  </Card>
-</CardGroup>
