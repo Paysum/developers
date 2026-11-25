@@ -14,6 +14,14 @@
     "display": "header",
     "options": ["copy", "view", "claude", "chatgpt", "perplexity", "grok", "aistudio", "devin", "windsurf"]
   },
+  "redirects": [
+    { "source": "/openapi.json", "destination": "https://paysum.io/openapi.json", "permanent": false },
+    { "source": "/embed.js", "destination": "https://paysum.io/embed.js", "permanent": false },
+    { "source": "/elements.js", "destination": "https://paysum.io/elements.js", "permanent": false },
+    { "source": "/paysum.min.js", "destination": "https://paysum.io/paysum.min.js", "permanent": false },
+    { "source": "/onboarding", "destination": "https://paysum.io/onboarding", "permanent": false },
+    { "source": "/docs-assets/:path*", "destination": "https://paysum.io/docs-assets/:path*", "permanent": false }
+  ],
   "navigation": {
     "tabs": [
       {
