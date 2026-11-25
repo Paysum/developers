@@ -7,3 +7,42 @@
   height: 20px;
   flex: none;
 }
+
+.sidebar-group > li > a > div:first-child:has(> img[src*="/images/sidebar/"][src*=".svg"]) {
+  width: 20px;
+  height: 20px;
+  align-self: start;
+  justify-content: center;
+  border-radius: 5px;
+  background: #f0f2f5;
+}
+
+.sidebar-group > li > a > div:first-child > img[src*="/images/sidebar/"][src*=".svg"] {
+  width: 14px;
+  height: 14px;
+  filter: grayscale(1);
+}
+
+.dark .sidebar-group > li > a > div:first-child:has(> img[src*="/images/sidebar/"][src*=".svg"]) {
+  background: #20242d;
+}
+
+.dark .sidebar-group > li > a img[src*="/images/sidebar/"][src*=".svg"] {
+  filter: grayscale(1) brightness(2.65);
+}
+
+.sidebar-group > li > a[aria-current="page"] > div:first-child:has(> img[src*="/images/sidebar/"][src*=".svg"]) {
+  background: #e8efff;
+}
+
+.sidebar-group > li > a[aria-current="page"] img[src*="/images/sidebar/"][src*=".svg"] {
+  filter: none;
+}
+
+.dark .sidebar-group > li > a[aria-current="page"] > div:first-child:has(> img[src*="/images/sidebar/"][src*=".svg"]) {
+  background: #1a2945;
+}
+
+.dark .sidebar-group > li > a[aria-current="page"] img[src*="/images/sidebar/"][src*=".svg"] {
+  filter: brightness(1.85) saturate(.8);
+}

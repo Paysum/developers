@@ -1,19 +1,30 @@
 ---
 title: "Support"
-description: "How to reach the {brand} team."
+description: "Contact PaySum support and prepare the information the team needs to investigate."
 icon: "/images/sidebar/Lifebuoy.svg"
 ---
 
-<p>Couldn’t find what you were looking for? The Paysum team is happy to help.</p>
+## Choose a support channel
+
 <CardGroup cols={2}>
-	<Card title="Contact us" href="https://paysum.dev/contact" icon="MessageSquare">
-		Send the team a message from the contact page.
+	<Card title="Contact PaySum" href="https://paysum.io/contact" icon="/images/sidebar/Lifebuoy.svg">
+		Use the contact form for account, payment, or store issues.
 	</Card>
-	<Card title="Read the FAQ" href="https://docs.paysum.io/faq" icon="HelpCircle">
-		Quick answers to common questions.
+	<Card title="Check service status" href="https://status.paysum.io/" icon="/images/sidebar/Pulse.svg">
+		Check for known incidents and scheduled maintenance.
+	</Card>
+	<Card title="Read the FAQ" href="/faq" icon="/images/sidebar/HelpCircle.svg">
+		Find quick answers to common questions.
+	</Card>
+	<Card title="Ask the community" href="https://discord.gg/paysum" icon="/images/sidebar/brand-discord.png">
+		Use Discord for general questions. Do not post private account or customer data.
 	</Card>
 </CardGroup>
-<p>
-	When reporting an API problem, include the endpoint, the time of the request and the error code you
-	received - never your API key.
-</p>
+
+## What to include
+
+- Your store URL, the page where the problem occurred, and the time with its time zone.
+- What you expected to happen and what happened instead.
+- The order or checkout reference for a payment issue, or the endpoint, HTTP status, and request ID for an API issue.
+
+<Note>Remove API keys, passwords, payment details, and customer information from logs and screenshots before you share them.</Note>

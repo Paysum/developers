@@ -26,6 +26,7 @@
     "tabs": [
       {
         "tab": "Guides",
+        "icon": "/images/sidebar/Book.svg",
         "groups": [
           {
             "group": "Getting Started",
@@ -122,6 +123,7 @@
       },
       {
         "tab": "Developers",
+        "icon": "/images/sidebar/Code2.svg",
         "groups": [
           {
             "group": "Get started",
@@ -160,6 +162,7 @@
       },
       {
         "tab": "API Reference",
+        "icon": "/images/sidebar/CodeFile.svg",
         "groups": [
           {
             "group": "Introduction",
@@ -218,6 +221,7 @@
       },
       {
         "tab": "CLI",
+        "icon": "/images/sidebar/TerminalSquare.svg",
         "groups": [
           {
             "group": "Get started",
@@ -244,6 +248,7 @@
       },
       {
         "tab": "MCP",
+        "icon": "/images/sidebar/Plug.svg",
         "groups": [
           {
             "group": "Get started",
@@ -263,10 +268,12 @@
       },
       {
         "tab": "Resources",
+        "icon": "/images/sidebar/Lifebuoy.svg",
         "groups": [
           {
             "group": "Help",
             "pages": [
+              "resources",
               "faq",
               "support"
             ]
