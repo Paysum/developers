@@ -46,3 +46,11 @@
 .dark .sidebar-group > li > a[aria-current="page"] img[src*="/images/sidebar/"][src*=".svg"] {
   filter: brightness(1.85) saturate(.8);
 }
+
+.nav-tabs-item img[src*="/images/sidebar/"][src*=".svg"] {
+  filter: grayscale(1);
+}
+
+.dark .nav-tabs-item img[src*="/images/sidebar/"][src*=".svg"] {
+  filter: grayscale(1) brightness(2.65);
+}
