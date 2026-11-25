@@ -54,3 +54,43 @@
 .dark .nav-tabs-item img[src*="/images/sidebar/"][src*=".svg"] {
   filter: grayscale(1) brightness(2.65);
 }
+
+/* Mintlify uses the first option for both the main button and the menu. */
+[role="menu"]:has([role="menuitem"] svg[viewBox="0 0 256 257"]) [role="menuitem"]:has(> div:first-child use[href$="-Copy"]) {
+  display: none;
+}
+
+[role="menu"]:has([role="menuitem"] svg[viewBox="0 0 256 257"]) [role="menuitem"] > div:first-child {
+  display: grid;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  margin-top: 2px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 8px;
+  color: white;
+  background: var(--action-tile, #315bd8);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
+}
+
+[role="menu"] [role="menuitem"] > div:first-child:has(> svg[viewBox="0 0 256 257"]) {
+  --action-tile: #a74629;
+}
+
+[role="menu"] [role="menuitem"] > div:first-child:has(> svg:has(> title) path[d^="M21.55 10.004"]) {
+  --action-tile: #087b62;
+}
+
+[role="menu"] [role="menuitem"] > div:first-child:has(> svg[viewBox="0 0 34 38"]) {
+  --action-tile: #087381;
+}
+
+[role="menu"] [role="menuitem"] > div:first-child:has(> svg path[d^="M9.27 15.29"]) {
+  --action-tile: #373052;
+}
+
+[role="menu"] [role="menuitem"] > div:first-child:has(> svg[viewBox="0 0 192 192"]) {
+  --action-tile: #8a388e;
+}

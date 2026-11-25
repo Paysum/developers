@@ -12,7 +12,7 @@
   "favicon": "/logo/favicon.png",
   "contextual": {
     "display": "header",
-    "options": ["copy", "view", "claude", "chatgpt", "perplexity", "grok", "aistudio", "devin", "windsurf"]
+    "options": ["copy", "view", "claude", "chatgpt", "perplexity", "grok", "aistudio"]
   },
   "redirects": [
     { "source": "/openapi.json", "destination": "https://paysum.io/openapi.json", "permanent": false },
