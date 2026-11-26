@@ -1,3 +1,28 @@
+:root.dark {
+  --dashboard-fg: #f0f0f0;
+  --dashboard-muted: #9a9a9a;
+  --dashboard-surface: #242424;
+  --dashboard-raised: #2a2a2a;
+  --dashboard-line: #3a3a3a;
+  --dashboard-accent: #5ea5f9;
+}
+
+.dark :is(#sidebar, #navbar .bg-background-dark, #content-area .card, #content-area .code-block) {
+  border-color: var(--dashboard-line);
+}
+
+.dark :is(#content-area .card, #content-area .code-block, #content-area .frame) {
+  background-color: var(--dashboard-surface);
+}
+
+.dark :is(#sidebar, #navbar, #content-area .frame figcaption) {
+  color: var(--dashboard-muted);
+}
+
+.dark #content-area :is(h1, h2, h3, h4) {
+  color: var(--dashboard-fg);
+}
+
 .sidebar-group > li > a > div:first-child:has(> img[aria-hidden="true"]) {
   height: max(20px, 1lh);
 }
@@ -24,7 +49,7 @@
 }
 
 .dark .sidebar-group > li > a > div:first-child:has(> img[src*="/images/sidebar/"][src*=".svg"]) {
-  background: #20242d;
+  background: var(--dashboard-raised);
 }
 
 .dark .sidebar-group > li > a img[src*="/images/sidebar/"][src*=".svg"] {
@@ -106,12 +131,12 @@
 }
 
 .dark :is(#chat-assistant-sheet, .chat-assistant-floating-input) {
-  --ask-surface: #10131a;
-  --ask-raised: #171d28;
-  --ask-line: #313b4d;
-  --ask-accent: #75a5ff;
+  --ask-surface: var(--dashboard-surface);
+  --ask-raised: var(--dashboard-raised);
+  --ask-line: var(--dashboard-line);
+  --ask-accent: var(--dashboard-accent);
   --ask-tile: #1a2945;
-  --ask-muted: #aebbd0;
+  --ask-muted: var(--dashboard-muted);
   --ask-shadow: rgb(0 0 0 / 38%);
 }
 

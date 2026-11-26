@@ -5,8 +5,11 @@
   "description": "Guides and API reference for Paysum stores.",
   "colors": {
     "primary": "#2563eb",
-    "light": "#3b82f6",
+    "light": "#5ea5f9",
     "dark": "#1d4ed8"
+  },
+  "background": {
+    "color": { "dark": "#1c1c1c" }
   },
   "logo": "/logo/paysum.svg",
   "favicon": "/logo/favicon.png",
