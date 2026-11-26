@@ -52,3 +52,9 @@ Permission: `checkout_api`
 <Note title="Note">
 Keys with no permissions at all are accepted by the Checkout API for backwards compatibility.
 </Note>
+
+## Use the response
+
+Redirect the buyer to `url`. Save the session `id` with your order so your server can [look up the session](/api/checkout/get-session) later. A new session has `status: "pending"`; creating it does not confirm payment.
+
+For custom `line_items`, fulfill the order only after you receive and verify the `checkout.session.completed` [webhook](/webhooks). For `product_ids`, PaySum uses the catalog prices and delivery settings.

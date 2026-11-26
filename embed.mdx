@@ -6,6 +6,10 @@ icon: "/images/sidebar/Code.svg"
 
 In **Catalog** → **Products**, open the product actions menu and select **Embed checkout**. Copy the button code. Load the script once per page. The embed does not need an API key.
 
+<Card title="Try the checkout embed" href="https://paysum.io/checkout-demo" icon="play">
+  Open a demo checkout, try the HTML or JavaScript example, and see the events it emits. The demo does not charge you or create an order.
+</Card>
+
 ```html
 <script src="https://paysum.io/embed.js" defer></script>
 <button type="button" data-product="PRODUCT_ID" data-store="your-store">Buy now</button>
@@ -15,7 +19,8 @@ In **Catalog** → **Products**, open the product actions menu and select **Embe
 
 | Attribute | Use |
 | --- | --- |
-| `data-product` | Required. Product ID. |
+| `data-product` | Product ID. Required if you do not pass `data-bundle`. |
+| `data-bundle` | Use instead of `data-product` to sell a bundle. Pass the bundle ID. |
 | `data-store` | Required. Store slug. The older `data-store-slug` also works. |
 | `data-store-url` | Optional. Custom store origin, for example `https://shop.example.com`. The default uses your store's `mypaysum.io` subdomain. |
 | `data-lang` | Optional. `en`, `es`, `fr`, `de`, `ja`, or `zh`. The script uses the page or browser language if you omit it, with English as the fallback. |
@@ -28,11 +33,23 @@ Open **Settings** → **Checkout embed** to set the background, product summary,
 
 ## JavaScript API
 
-After the script loads, use `window.Paysum.open(productId, options)` or `window.Paysum.close()`. Pass `store` if no matching button is present. Optional settings include `lang`, `storeUrl`, and `checkoutPath` (default `/checkout`).
+[Open the checkout playground](https://paysum.io/checkout-demo). Select **JavaScript**, then click **Buy now** to open the modal. The **Events** panel shows what the embed reports. Replace `PRODUCT_ID` and `your-store` with your own values when you copy the code.
 
-```js
-window.Paysum.open('PRODUCT_ID', { store: 'your-store', lang: 'en' })
+On your site, call `window.Paysum.open(productId, options)` after the script loads. Pass `store` if no matching embed button supplies the store slug.
+
+```html
+<script src="https://paysum.io/embed.js" defer></script>
+<button type="button" id="buy">Buy now</button>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('buy').addEventListener('click', () => {
+      window.Paysum.open('PRODUCT_ID', { store: 'your-store', lang: 'en' })
+    })
+  })
+</script>
 ```
+
+Use `openBundle(bundleId, options)` for a bundle and `close()` to dismiss an open modal. Use `storeUrl` for a custom storefront origin, `lang` for the checkout language, and `checkoutPath` only if your checkout uses a path other than `/checkout`.
 
 Use `preload(productId, options)` to load checkout early, `retry(productId)` to reload a failed checkout, and `clearCache()` to remove inactive frames. Use `configure(options)` to set defaults and `destroy()` to remove the integration. `window.Swiftly` is a legacy alias.
 
@@ -47,6 +64,14 @@ Listen on `window`. Use browser events for interface feedback, not as proof of p
 | `paysum--close` | The modal closes. |
 | `paysum-purchase-complete` | Checkout reports completion. |
 | `paysum-purchase-error` | Checkout reports an error. |
+
+```js
+window.addEventListener('paysum-checkout-open', ({ detail }) => {
+  console.log(`Checkout opened for ${detail.productId} in ${detail.storeSlug}`)
+})
+```
+
+For fulfillment, verify payment on your server with a [signed webhook](/webhooks) or the API. Do not fulfill an order from a browser event.
 
 ## Before you go live
 
